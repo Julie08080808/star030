@@ -1692,6 +1692,50 @@
             }
         }
 
+        /* 🎂 手機響應式 - 生日按鈕 */
+        @media (max-width: 768px) {
+            .birthday-special-button {
+                bottom: 15px;
+                right: 15px;
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .birthday-special-button {
+                bottom: 80px;
+                /* 避開餵食按鈕 */
+                right: 15px;
+                padding: 0.45rem 0.9rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .birthday-special-button {
+                bottom: 15px;
+                right: 15px;
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+            }
+
+            .hunger-display {
+                top: 10px;
+                right: 10px;
+                padding: 0.4rem 0.8rem;
+                gap: 0.4rem;
+            }
+
+            .hunger-label {
+                font-size: 0.75rem;
+            }
+
+            .hunger-heart {
+                font-size: 0.9rem;
+            }
+        }
+
         /* === 生日蛋糕場景 === */
         .birthday-cake-scene {
             position: absolute;
