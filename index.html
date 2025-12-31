@@ -2471,7 +2471,6 @@
         <!-- CH5: 寵物首頁 -->
         <section id="scene-pet-home" class="scene">
 
-
             <!-- 🎂 生日特殊按鈕（只在生日當天顯示） -->
             <button class="birthday-special-button" id="birthdaySpecialBtn">
                 🎂
@@ -2565,6 +2564,7 @@
                 </button>
             </div>
 
+
             <div class="top-left-msg-btn">
                 <button class="action-btn" onclick="togglePetModal(true)">查看訊息</button>
             </div>
@@ -2582,7 +2582,6 @@
                 </div>
             </div>
         </section>
-
 
 
         <section id="scene-birthday" class="scene">
@@ -3055,6 +3054,9 @@
         // CH5: 寵物首頁
         // ==========================================
         function showPetHome() {
+            // 隱藏跳過按鈕（動畫已完成）
+            hideSkipButton();
+
             // 切換場景
             document.getElementById("scene-hatching").classList.remove("active");
             const homeScene = document.getElementById("scene-pet-home");
@@ -3482,6 +3484,38 @@
             if (today === userBirthday) {
                 const btn = document.getElementById("birthdaySpecialBtn");
                 btn.classList.add("show");
+            }
+        } function checkAndShowBirthdayButton() {
+            const birthday = localStorage.getItem(BDAY_KEY);
+            if (!birthday) {
+                console.log("❌ 沒有儲存生日");
+                return;
+            }
+
+            const today = new Date();
+            const todayMonth = String(today.getMonth() + 1).padStart(2, '0');  // "01"
+            const todayDay = String(today.getDate()).padStart(2, '0');          // "01"
+            const todayString = `${todayMonth}-${todayDay}`;                    // "01-01"
+
+            const birthdayDate = new Date(birthday);
+            const birthMonth = String(birthdayDate.getMonth() + 1).padStart(2, '0');
+            const birthDay = String(birthdayDate.getDate()).padStart(2, '0');
+            const birthString = `${birthMonth}-${birthDay}`;
+
+            console.log("📅 今天:", todayString);
+            console.log("🎂 生日:", birthString);
+            console.log("🎯 匹配?", todayString === birthString);
+
+            if (todayString === birthString) {
+                const btn = document.getElementById("birthdaySpecialBtn");
+                if (btn) {
+                    btn.classList.add("show");
+                    console.log("✅ 生日按鈕已顯示！");
+                } else {
+                    console.error("❌ 找不到生日按鈕元素！");
+                }
+            } else {
+                console.log("⚠️ 今天不是生日");
             }
         }
 
