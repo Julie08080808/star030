@@ -1,0 +1,3630 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy New Year 2026 - 你的跨年驚喜</title>
+    <style type="text/css">
+        :root {
+            --vh: 100svh;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+            overflow: hidden;
+        }
+
+        /* === 基本舞台 === */
+        .scene {
+            position: fixed;
+            height: var(--vh);
+            inset: 0;
+            background: linear-gradient(to bottom,
+                    #020510 0%,
+                    #0a1428 25%,
+                    #15213d 50%,
+                    #1a2845 75%,
+                    #0b1430 100%);
+            overflow: hidden;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1s ease;
+            z-index: 1;
+        }
+
+        .scene.active {
+            opacity: 1;
+            pointer-events: auto;
+            z-index: 2;
+        }
+
+        /* === 夜空 === */
+        .sky {
+            position: absolute;
+            inset: 0;
+        }
+
+        /* === 星星 === */
+        .stars {
+            position: absolute;
+            inset: 0;
+        }
+
+        /* 星星層次1：大顆明亮的星星 */
+        .stars::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(3px 3px at 20% 30%, rgba(255, 255, 255, 1), transparent),
+                radial-gradient(2.5px 2.5px at 60% 15%, rgba(200, 220, 255, 0.95), transparent),
+                radial-gradient(3px 3px at 85% 25%, rgba(255, 240, 255, 0.9), transparent),
+                radial-gradient(2px 2px at 15% 65%, rgba(255, 255, 255, 0.95), transparent),
+                radial-gradient(2.5px 2.5px at 75% 45%, rgba(220, 235, 255, 0.9), transparent),
+                radial-gradient(3px 3px at 45% 70%, rgba(255, 250, 255, 0.95), transparent),
+                radial-gradient(2px 2px at 90% 60%, rgba(200, 220, 255, 0.85), transparent),
+                radial-gradient(2.5px 2.5px at 30% 20%, rgba(255, 255, 255, 0.9), transparent),
+                radial-gradient(2px 2px at 55% 85%, rgba(220, 230, 255, 0.85), transparent),
+                radial-gradient(3px 3px at 10% 40%, rgba(255, 245, 255, 0.95), transparent);
+            background-size: 250% 250%;
+            animation: stars-twinkle-big 4s ease-in-out infinite, stars-drift 40s linear infinite;
+            opacity: 1;
+        }
+
+        /* 星星層次2：中等星星 */
+        .stars::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(1.5px 1.5px at 25% 35%, rgba(255, 255, 255, 0.8), transparent),
+                radial-gradient(1.5px 1.5px at 65% 25%, rgba(200, 220, 255, 0.75), transparent),
+                radial-gradient(1.5px 1.5px at 82% 55%, rgba(255, 240, 255, 0.7), transparent),
+                radial-gradient(1.5px 1.5px at 18% 75%, rgba(255, 255, 255, 0.75), transparent),
+                radial-gradient(1.5px 1.5px at 70% 80%, rgba(220, 235, 255, 0.7), transparent),
+                radial-gradient(1.5px 1.5px at 40% 60%, rgba(255, 250, 255, 0.75), transparent),
+                radial-gradient(1.5px 1.5px at 95% 35%, rgba(200, 220, 255, 0.7), transparent),
+                radial-gradient(1.5px 1.5px at 35% 10%, rgba(255, 255, 255, 0.75), transparent),
+                radial-gradient(1.5px 1.5px at 50% 50%, rgba(220, 230, 255, 0.7), transparent),
+                radial-gradient(1.5px 1.5px at 8% 20%, rgba(255, 245, 255, 0.75), transparent),
+                radial-gradient(1.5px 1.5px at 78% 12%, rgba(255, 255, 255, 0.7), transparent),
+                radial-gradient(1.5px 1.5px at 42% 88%, rgba(200, 220, 255, 0.75), transparent),
+                radial-gradient(1.5px 1.5px at 88% 75%, rgba(255, 240, 255, 0.7), transparent),
+                radial-gradient(1.5px 1.5px at 12% 55%, rgba(255, 255, 255, 0.75), transparent),
+                radial-gradient(1.5px 1.5px at 58% 32%, rgba(220, 235, 255, 0.7), transparent);
+            background-size: 220% 220%;
+            animation: stars-twinkle-medium 5s ease-in-out infinite 1s, stars-drift 35s linear infinite;
+            opacity: 0.95;
+        }
+
+        /* 星星層次3：小顆點綴星星 */
+        .stars {
+            background:
+                radial-gradient(1px 1px at 22% 42%, rgba(255, 255, 255, 0.6), transparent),
+                radial-gradient(1px 1px at 68% 18%, rgba(200, 220, 255, 0.55), transparent),
+                radial-gradient(1px 1px at 80% 48%, rgba(255, 240, 255, 0.5), transparent),
+                radial-gradient(1px 1px at 14% 82%, rgba(255, 255, 255, 0.55), transparent),
+                radial-gradient(1px 1px at 72% 72%, rgba(220, 235, 255, 0.5), transparent),
+                radial-gradient(1px 1px at 38% 65%, rgba(255, 250, 255, 0.55), transparent),
+                radial-gradient(1px 1px at 92% 28%, rgba(200, 220, 255, 0.5), transparent),
+                radial-gradient(1px 1px at 32% 8%, rgba(255, 255, 255, 0.55), transparent),
+                radial-gradient(1px 1px at 52% 55%, rgba(220, 230, 255, 0.5), transparent),
+                radial-gradient(1px 1px at 5% 15%, rgba(255, 245, 255, 0.55), transparent),
+                radial-gradient(1px 1px at 75% 8%, rgba(255, 255, 255, 0.5), transparent),
+                radial-gradient(1px 1px at 48% 92%, rgba(200, 220, 255, 0.55), transparent),
+                radial-gradient(1px 1px at 85% 68%, rgba(255, 240, 255, 0.5), transparent),
+                radial-gradient(1px 1px at 16% 52%, rgba(255, 255, 255, 0.55), transparent),
+                radial-gradient(1px 1px at 62% 38%, rgba(220, 235, 255, 0.5), transparent),
+                radial-gradient(1px 1px at 28% 78%, rgba(255, 250, 255, 0.55), transparent),
+                radial-gradient(1px 1px at 95% 82%, rgba(200, 220, 255, 0.5), transparent),
+                radial-gradient(1px 1px at 8% 68%, rgba(255, 255, 255, 0.55), transparent),
+                radial-gradient(1px 1px at 55% 22%, rgba(220, 230, 255, 0.5), transparent),
+                radial-gradient(1px 1px at 88% 42%, rgba(255, 245, 255, 0.55), transparent);
+            background-size: 200% 200%;
+            animation: stars-twinkle-small 6s ease-in-out infinite 2s, stars-drift 30s linear infinite;
+            opacity: 0.85;
+        }
+
+        @keyframes stars-drift {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-40px);
+            }
+        }
+
+        @keyframes stars-twinkle-big {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.6;
+            }
+        }
+
+        @keyframes stars-twinkle-medium {
+
+            0%,
+            100% {
+                opacity: 0.95;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes stars-twinkle-small {
+
+            0%,
+            100% {
+                opacity: 0.85;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        /* === 月亮 === */
+        .moon {
+            position: absolute;
+            top: 15%;
+            right: 15%;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle at 30% 30%, #fff, #d9d9d9);
+            border-radius: 50%;
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.4);
+        }
+
+        /* === 地面 === */
+        .ground {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(#02040a, #000);
+        }
+
+        /* === 夜景城市燈光 === */
+        .city-lights {
+            position: absolute;
+            bottom: 5%;
+            left: 0;
+            width: 100%;
+            height: 20%;
+            background:
+                /* 主要城市燈光 */
+                radial-gradient(3px 8px at 15% 50%, rgba(255, 235, 153, 0.9), transparent),
+                radial-gradient(2px 6px at 22% 60%, rgba(255, 230, 128, 0.8), transparent),
+                radial-gradient(2px 5px at 28% 45%, rgba(255, 244, 179, 0.7), transparent),
+                radial-gradient(3px 7px at 35% 70%, rgba(255, 235, 153, 0.85), transparent),
+                radial-gradient(2px 6px at 42% 55%, rgba(255, 230, 128, 0.75), transparent),
+                radial-gradient(4px 10px at 50% 65%, rgba(255, 244, 179, 0.9), transparent),
+                radial-gradient(2px 5px at 58% 50%, rgba(255, 235, 153, 0.7), transparent),
+                radial-gradient(3px 8px at 65% 60%, rgba(255, 230, 128, 0.85), transparent),
+                radial-gradient(2px 6px at 72% 55%, rgba(255, 244, 179, 0.8), transparent),
+                radial-gradient(3px 9px at 80% 70%, rgba(255, 235, 153, 0.9), transparent),
+                radial-gradient(2px 5px at 88% 50%, rgba(255, 230, 128, 0.7), transparent),
+                /* 散落的小燈光 */
+                radial-gradient(1px 3px at 18% 75%, rgba(255, 240, 200, 0.5), transparent),
+                radial-gradient(1px 3px at 45% 80%, rgba(255, 245, 210, 0.5), transparent),
+                radial-gradient(1px 3px at 68% 75%, rgba(255, 240, 200, 0.5), transparent),
+                radial-gradient(1px 3px at 85% 82%, rgba(255, 245, 210, 0.5), transparent),
+                /* 遠處的光暈 */
+                radial-gradient(ellipse 20% 10% at 30% 60%, rgba(255, 230, 150, 0.15), transparent),
+                radial-gradient(ellipse 25% 12% at 70% 65%, rgba(255, 235, 160, 0.12), transparent);
+            opacity: 0;
+            transition: opacity 2s ease;
+        }
+
+        .scene.show-city .city-lights {
+            opacity: 1;
+        }
+
+        /* === 霧氣 === */
+        .fog {
+            position: absolute;
+            bottom: 0;
+            width: 200%;
+            height: 45%;
+            background: linear-gradient(to right,
+                    rgba(255, 255, 255, 0.03),
+                    rgba(255, 255, 255, 0.08),
+                    rgba(220, 230, 255, 0.06),
+                    rgba(255, 255, 255, 0.04),
+                    rgba(240, 245, 255, 0.07),
+                    rgba(255, 255, 255, 0.03));
+            animation: fog-move 35s linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes fog-move {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* === 高山剪影 === */
+        .mountain {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 55%;
+        }
+
+        /* 使用SVG path創造平滑的山形 */
+        .mountain svg {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .mountain .peak {
+            fill: #0a0a0a;
+            opacity: 0.95;
+        }
+
+        .mountain .peak-back {
+            fill: #050505;
+            opacity: 0.7;
+        }
+
+        /* === 樹木（初始黑色） === */
+        .tree {
+            position: absolute;
+            right: 15%;
+            bottom: 20%;
+            width: 300px;
+            height: 280px;
+            transition: all 3s ease-in-out;
+        }
+
+        .tree svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 樹幹和樹枝初始為黑色 */
+        .tree .trunk,
+        .tree .branch {
+            fill: none;
+            stroke: #000;
+            stroke-width: 3;
+            transition: stroke 3s ease-in-out;
+        }
+
+        .tree .branch {
+            stroke-width: 2;
+        }
+
+        /* 花朵初始不可見 */
+        .tree .blossom {
+            opacity: 0;
+            transition: opacity 3s ease-in-out;
+        }
+
+        /* === 櫻花樹變身 === */
+        .scene.transform .tree .trunk,
+        .scene.transform .tree .branch {
+            stroke: #2a1a1a;
+        }
+
+        .scene.transform .tree .blossom {
+            opacity: 1;
+        }
+
+        /* === 史萊姆型寵物 === */
+        .pomeranian {
+            position: absolute;
+            bottom: 20%;
+            left: -200px;
+            width: 160px;
+            fill: #000;
+        }
+
+        /* 跳躍移動動畫 */
+        .pomeranian.running {
+            animation: slime-hop 8s ease-out forwards;
+        }
+
+        @keyframes slime-hop {
+            0% {
+                transform: translateX(-200px) translateY(0) scaleX(1) scaleY(1);
+            }
+
+            5% {
+                transform: translateX(-150px) translateY(-20px) scaleX(0.95) scaleY(1.1);
+            }
+
+            10% {
+                transform: translateX(-100px) translateY(0) scaleX(1.1) scaleY(0.9);
+            }
+
+            15% {
+                transform: translateX(-50px) translateY(-20px) scaleX(0.95) scaleY(1.1);
+            }
+
+            20% {
+                transform: translateX(0) translateY(0) scaleX(1.1) scaleY(0.9);
+            }
+
+            25% {
+                transform: translateX(50px) translateY(-20px) scaleX(0.95) scaleY(1.1);
+            }
+
+            30% {
+                transform: translateX(100px) translateY(0) scaleX(1.1) scaleY(0.9);
+            }
+
+            35% {
+                transform: translateX(150px) translateY(-20px) scaleX(0.95) scaleY(1.1);
+            }
+
+            40% {
+                transform: translateX(200px) translateY(0) scaleX(1.1) scaleY(0.9);
+            }
+
+            45% {
+                transform: translateX(250px) translateY(-18px) scaleX(0.95) scaleY(1.1);
+            }
+
+            50% {
+                transform: translateX(300px) translateY(0) scaleX(1.1) scaleY(0.9);
+            }
+
+            55% {
+                transform: translateX(350px) translateY(-18px) scaleX(0.95) scaleY(1.1);
+            }
+
+            60% {
+                transform: translateX(400px) translateY(0) scaleX(1.1) scaleY(0.9);
+            }
+
+            65% {
+                transform: translateX(450px) translateY(-15px) scaleX(0.95) scaleY(1.05);
+            }
+
+            70% {
+                transform: translateX(calc(35vw - 80px)) translateY(0) scaleX(1.05) scaleY(0.95);
+            }
+
+            100% {
+                transform: translateX(calc(38vw - 80px)) translateY(0) scaleX(1) scaleY(1);
+            }
+        }
+
+        .tail {
+            transform-origin: center;
+            animation: tail-wag 0.3s infinite;
+        }
+
+        @keyframes tail-wag {
+
+            0%,
+            100% {
+                transform: rotate(20deg);
+            }
+
+            50% {
+                transform: rotate(-20deg);
+            }
+        }
+
+        /* 停下後輕微彈跳 */
+        .pomeranian.stopped {
+            animation: slime-idle 2s ease-in-out infinite;
+        }
+
+        @keyframes slime-idle {
+
+            0%,
+            100% {
+                transform: translateX(calc(38vw - 80px)) scaleX(1) scaleY(1);
+            }
+
+            50% {
+                transform: translateX(calc(38vw - 80px)) scaleX(1.02) scaleY(0.98);
+            }
+        }
+
+        .pomeranian.stopped .tail {
+            animation: tail-slow 1.5s infinite;
+        }
+
+        @keyframes tail-slow {
+
+            0%,
+            100% {
+                transform: rotate(5deg);
+            }
+
+            50% {
+                transform: rotate(-5deg);
+            }
+        }
+
+        /* === 抬頭看 === */
+        .pomeranian.look-up {
+            animation: slime-look-up 2s ease-out forwards;
+        }
+
+        @keyframes slime-look-up {
+            0% {
+                transform: translateX(calc(38vw - 80px)) scaleX(1) scaleY(1);
+            }
+
+            100% {
+                transform: translateX(calc(38vw - 80px)) scaleX(0.98) scaleY(1.05);
+            }
+        }
+
+        /* === 櫻花花瓣 === */
+        .petals {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .petal {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            opacity: 0;
+            animation: petal-fall 10s linear infinite;
+        }
+
+        /* 櫻花花瓣形狀 - 橢圓型 */
+        .petal::before {
+            content: "";
+            position: absolute;
+            width: 14px;
+            height: 8px;
+            background: linear-gradient(135deg,
+                    rgba(255, 192, 211, 0.95) 0%,
+                    rgba(255, 183, 213, 1) 50%,
+                    rgba(255, 170, 208, 0.9) 100%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            box-shadow:
+                inset 0 -1px 2px rgba(255, 150, 180, 0.3),
+                0 1px 3px rgba(255, 183, 213, 0.4);
+        }
+
+        /* 為花瓣增加細節 */
+        .petal::after {
+            content: "";
+            position: absolute;
+            width: 14px;
+            height: 8px;
+            background: radial-gradient(ellipse at center,
+                    rgba(255, 220, 230, 0.6) 0%,
+                    transparent 70%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            top: 0;
+            left: 0;
+        }
+
+        @keyframes petal-fall {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px) translateX(0) rotate(0deg);
+            }
+
+            5% {
+                opacity: 1;
+            }
+
+            25% {
+                transform: translateY(25vh) translateX(20px) rotate(180deg);
+            }
+
+            50% {
+                transform: translateY(50vh) translateX(-10px) rotate(360deg);
+            }
+
+            75% {
+                transform: translateY(75vh) translateX(30px) rotate(540deg);
+                opacity: 0.8;
+            }
+
+            90% {
+                opacity: 0.4;
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(110vh) translateX(15px) rotate(720deg);
+            }
+        }
+
+        /* === 倒數數字 === */
+        .countdown {
+            position: absolute;
+            top: 38%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 15vw;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .countdown.visible {
+            opacity: 1;
+        }
+
+        /* === 2026 特效 === */
+        .year-2026 {
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 18vw;
+            font-weight: 900;
+            color: transparent;
+            background: linear-gradient(45deg,
+                    #ff6b6b,
+                    #ffd93d,
+                    #6bcf7f,
+                    #4ecdc4,
+                    #a78bfa,
+                    #ff6bcf);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            opacity: 0;
+            text-shadow:
+                0 0 20px rgba(255, 107, 107, 0.5),
+                0 0 40px rgba(78, 205, 196, 0.4),
+                0 0 60px rgba(167, 139, 250, 0.3);
+            animation: gradient-flow 3s ease infinite;
+            letter-spacing: 0.05em;
+        }
+
+        /* === 新年快樂文字 === */
+        /* === 新年快樂文字 === */
+        .happy-new-year {
+            position: absolute;
+            top: 52%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 8vw;
+            font-weight: 700;
+            color: transparent;
+            background: linear-gradient(120deg,
+                    #ff6bcf,
+                    #ffd93d,
+                    #6bcf7f,
+                    #4ecdc4,
+                    #a78bfa);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            opacity: 0;
+            text-shadow:
+                0 0 15px rgba(255, 107, 207, 0.6),
+                0 0 30px rgba(255, 217, 61, 0.4);
+            letter-spacing: 0.08em;
+        }
+
+        .happy-new-year.show {
+            animation: happy-appear 3s ease forwards, gradient-flow 3s ease infinite;
+        }
+
+        @keyframes happy-appear {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(30px) scale(0.5);
+            }
+
+            70% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0) scale(1.1);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0) scale(1);
+            }
+        }
+
+        .happy-new-year.celebrate {
+            animation: happy-bounce 1s ease infinite, gradient-flow 3s ease infinite;
+        }
+
+        @keyframes happy-bounce {
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0) scale(1);
+            }
+
+            25% {
+                transform: translateX(-50%) translateY(-8px) scale(1.04);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(-10px) scale(1.05);
+            }
+
+            75% {
+                transform: translateX(-50%) translateY(-8px) scale(1.04);
+            }
+        }
+
+        @keyframes gradient-flow {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .year-2026.show {
+            animation: year-appear 5s ease forwards, gradient-flow 3s ease infinite;
+        }
+
+        @keyframes year-appear {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) scale(0.3) rotateY(90deg);
+            }
+
+            60% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1.15) rotateY(0deg);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1) rotateY(0deg);
+            }
+        }
+
+        .year-2026.celebrate {
+            animation: year-celebrate 0.8s ease infinite, gradient-flow 2s ease infinite;
+        }
+
+        @keyframes year-celebrate {
+
+            0%,
+            100% {
+                transform: translateX(-50%) scale(1) rotate(0deg);
+            }
+
+            25% {
+                transform: translateX(-50%) scale(1.05) rotate(-2deg);
+            }
+
+            75% {
+                transform: translateX(-50%) scale(1.05) rotate(2deg);
+            }
+        }
+
+        /* 2026 周圍的光暈 */
+        .year-glow {
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80vw;
+            height: 30vw;
+            background: radial-gradient(ellipse,
+                    rgba(255, 107, 107, 0.3),
+                    rgba(78, 205, 196, 0.2) 30%,
+                    transparent 70%);
+            opacity: 0;
+            filter: blur(40px);
+            animation: glow-pulse 2s ease-in-out infinite;
+        }
+
+        .year-glow.active {
+            opacity: 1;
+        }
+
+        @keyframes glow-pulse {
+
+            0%,
+            100% {
+                transform: translateX(-50%) scale(1);
+                opacity: 0.6;
+            }
+
+            50% {
+                transform: translateX(-50%) scale(1.1);
+                opacity: 1;
+            }
+        }
+
+        /* 2026 粒子特效 */
+        .year-particles {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .year-particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            opacity: 0;
+        }
+
+        .year-particle.burst {
+            animation: particle-burst 5s ease-out forwards;
+        }
+
+        @keyframes particle-burst {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        /* 響應式調整 */
+        @media (max-width: 768px) {
+            .year-2026 {
+                font-size: 22vw;
+            }
+
+            .happy-new-year {
+                font-size: 10vw;
+                top: 54%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .year-2026 {
+                font-size: 25vw;
+            }
+
+            .happy-new-year {
+                font-size: 11vw;
+                top: 55%;
+            }
+        }
+
+        /* === 煙火 === */
+        .fireworks {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .firework {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+
+        /* 煙火粒子 */
+        .firework-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            animation: particle-explode 1.2s ease-out forwards;
+        }
+
+        @keyframes particle-explode {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        /* === 星星飛來 === */
+        .shooting-star {
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #fff, #ffe3a0);
+            border-radius: 50%;
+            box-shadow: 0 0 60px rgba(255, 255, 255, 0.8);
+            opacity: 0;
+        }
+
+        .shooting-star.flying {
+            animation: star-fly 2s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+        }
+
+        @keyframes star-fly {
+            0% {
+                opacity: 1;
+                transform: translate(-100px, -100px) scale(0.3);
+            }
+
+            70% {
+                transform: translate(calc(50vw - 40px), calc(55vh - 40px)) scale(1.1);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translate(calc(50vw - 40px), calc(55vh - 40px)) scale(1.2);
+            }
+
+        }
+
+        /* === 星星變蛋 === */
+        .shooting-star.transform-to-egg {
+            animation: star-to-egg 2s ease forwards;
+        }
+
+        @keyframes star-to-egg {
+            0% {
+                border-radius: 50%;
+                background: radial-gradient(circle, #fff, #ffe3a0);
+            }
+
+            100% {
+                border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+                background: linear-gradient(135deg, #fef9e7, #f9e4b7);
+                box-shadow: 0 0 30px rgba(255, 235, 180, 0.6);
+            }
+        }
+
+        /* === 孵化提示 === */
+        .hatch-hint {
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        @media (max-width: 480px) {
+            .hatch-btn {
+                padding: 1rem 2.5rem;
+                font-size: 1.1rem;
+            }
+        }
+
+        .hatch-hint.visible {
+            opacity: 1;
+        }
+
+        .hatch-hint p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        .hatch-btn {
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .hatch-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* === 孵化場景 === */
+        .hatching-egg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 180px;
+            height: 220px;
+            background: linear-gradient(135deg, #fef9e7, #f9e4b7);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            box-shadow: 0 0 40px rgba(255, 235, 180, 0.4);
+        }
+
+        /* 裂紋 === */
+        .crack {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .scene.cracking .crack {
+            opacity: 1;
+        }
+
+        .crack-1 {
+            top: 30%;
+            left: 50%;
+            width: 3px;
+            height: 60px;
+            transform: translateX(-50%) rotate(15deg);
+        }
+
+        .crack-2 {
+            top: 40%;
+            left: 35%;
+            width: 3px;
+            height: 50px;
+            transform: rotate(-20deg);
+        }
+
+        .crack-3 {
+            top: 45%;
+            right: 35%;
+            width: 3px;
+            height: 45px;
+            transform: rotate(25deg);
+        }
+
+        /* 內部發光 */
+        .inner-light {
+            position: absolute;
+            inset: 20px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            background: radial-gradient(circle, rgba(255, 255, 200, 0), rgba(255, 255, 200, 0));
+            transition: background 1s ease;
+        }
+
+        .scene.light .inner-light {
+            background: radial-gradient(circle, rgba(255, 255, 200, 0.6), rgba(255, 255, 200, 0));
+            animation: pulse-light 1.5s ease infinite;
+        }
+
+        @keyframes pulse-light {
+
+            0%,
+            100% {
+                opacity: 0.6;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .hatch-message {
+            position: absolute;
+            bottom: 20%;
+            width: 100%;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+            letter-spacing: 0.15em;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .scene.cracking .hatch-message {
+            opacity: 1;
+        }
+
+        /* === 寵物首頁 - 夢幻森林回家場景 === */
+        #scene-pet-home {
+            background: transparent;
+        }
+
+        /* 夢幻背景圖片 */
+        .dreamy-bg {
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at bottom, rgba(43, 28, 77, 0.3) 0%, rgba(11, 15, 42, 0.5) 65%),
+                url('data:image/png;base64,...') center center / cover no-repeat;
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+        }
+
+        /* 如果要使用外部圖片，請使用以下格式： */
+        .dreamy-bg-image {
+            position: absolute;
+            inset: 0;
+            background-image: url('background.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.95;
+        }
+
+        /* 疊加漸層增強氛圍 */
+        .dreamy-overlay {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at top, transparent 0%, rgba(11, 15, 42, 0.3) 100%),
+                radial-gradient(circle at 70% 20%, rgba(255, 200, 220, 0.15), transparent 40%),
+                radial-gradient(circle at 20% 30%, rgba(180, 200, 255, 0.12), transparent 45%);
+        }
+
+        /* 魔法粒子 */
+        .magic-particles {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(2px 2px at 15% 25%, rgba(255, 220, 150, 0.8), transparent),
+                radial-gradient(1.5px 1.5px at 85% 15%, rgba(255, 200, 220, 0.7), transparent),
+                radial-gradient(2px 2px at 45% 35%, rgba(200, 220, 255, 0.6), transparent),
+                radial-gradient(1.5px 1.5px at 70% 45%, rgba(255, 230, 180, 0.75), transparent),
+                radial-gradient(2px 2px at 25% 55%, rgba(255, 210, 200, 0.7), transparent),
+                radial-gradient(1.5px 1.5px at 90% 65%, rgba(220, 200, 255, 0.65), transparent),
+                radial-gradient(2px 2px at 10% 75%, rgba(255, 220, 150, 0.8), transparent),
+                radial-gradient(1.5px 1.5px at 55% 85%, rgba(200, 230, 255, 0.7), transparent);
+            background-size: 200% 200%;
+            animation: magic-float 20s ease-in-out infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes magic-float {
+
+            0%,
+            100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0.6;
+            }
+
+            50% {
+                transform: translateY(-20px) translateX(10px);
+                opacity: 0.4;
+            }
+        }
+
+        /* 森林剪影層 - 降低不透明度以顯示背景 */
+        .forest-silhouette {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: linear-gradient(to top, rgba(10, 8, 32, 0.3), transparent);
+        }
+
+        .forest-trees {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+        }
+
+        .forest-trees svg {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 櫻花樹剪影 - 移除以顯示背景中的樹 */
+        .cherry-tree-left,
+        .cherry-tree-right {
+            display: none;
+        }
+
+        /* 溫暖的燈光 */
+        .warm-lights {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 3px 8px at 18% 55%, rgba(255, 230, 150, 0.6), transparent),
+                radial-gradient(ellipse 2.5px 7px at 25% 60%, rgba(255, 220, 140, 0.55), transparent),
+                radial-gradient(ellipse 3px 8px at 32% 57%, rgba(255, 235, 155, 0.6), transparent),
+                radial-gradient(ellipse 2.5px 7px at 68% 57%, rgba(255, 230, 150, 0.55), transparent),
+                radial-gradient(ellipse 3px 8px at 75% 60%, rgba(255, 220, 140, 0.6), transparent),
+                radial-gradient(ellipse 2.5px 7px at 82% 55%, rgba(255, 235, 155, 0.55), transparent);
+            animation: light-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes light-glow {
+
+            0%,
+            100% {
+                opacity: 0.7;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* 慶祝煙火 */
+        .celebration-fireworks {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .mini-firework {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            animation: mini-burst 3s ease-out infinite;
+        }
+
+        @keyframes mini-burst {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* 小路 */
+        .path-home {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40%;
+            height: 30%;
+            background: linear-gradient(to top,
+                    rgba(255, 240, 200, 0.15) 0%,
+                    rgba(255, 230, 180, 0.1) 30%,
+                    transparent 100%);
+            clip-path: polygon(45% 100%, 35% 0%, 65% 0%, 55% 100%);
+        }
+
+        .pet-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+        }
+
+        .pet {
+            width: 200px;
+            height: 160px;
+            fill: #fff;
+            filter: drop-shadow(0 0 25px rgba(255, 230, 200, 0.8));
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            animation: pet-appear 2.5s ease forwards;
+        }
+
+        @keyframes pet-appear {
+            0% {
+                transform: scale(0.3);
+                filter: drop-shadow(0 0 40px rgba(255, 230, 200, 1));
+            }
+
+            100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 25px rgba(255, 230, 200, 0.8));
+            }
+        }
+
+        .pet:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 30px rgba(255, 230, 200, 0.9));
+        }
+
+        .pet.touched {
+            animation: pet-bounce 0.5s ease;
+        }
+
+        @keyframes pet-bounce {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .pet-name {
+            color: #fff;
+            font-size: 2rem;
+            margin-top: 2rem;
+            opacity: 0;
+            animation: text-fade-in 2s ease 1.5s forwards;
+            text-shadow: 0 2px 10px rgba(100, 50, 150, 0.6), 0 0 20px rgba(255, 200, 220, 0.4);
+        }
+
+        .pet-message {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            line-height: 1.8;
+            opacity: 0;
+            animation: text-fade-in 2s ease 2s forwards;
+            text-shadow: 0 2px 8px rgba(50, 30, 80, 0.8), 0 0 15px rgba(255, 200, 220, 0.3);
+        }
+
+        @keyframes text-fade-in {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* === 記憶表單 === */
+        .memory-form {
+            position: fixed;
+            bottom: 8%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            opacity: 0;
+            animation: text-fade-in 1.5s ease 2s forwards;
+            width: 90%;
+            max-width: 320px;
+            z-index: 100;
+        }
+
+        .memory-form input {
+            padding: 0.8rem 1.2rem;
+            font-size: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .memory-form input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .memory-form input:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .memory-form button {
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #fff;
+            background: rgba(100, 150, 255, 0.3);
+            border: 2px solid rgba(100, 150, 255, 0.5);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .memory-form button:hover {
+            background: rgba(100, 150, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* === 餵食系統 === */
+        .feeding-system {
+            position: fixed;
+            bottom: 8%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            opacity: 0;
+            z-index: 10;
+            transition: opacity 0.5s ease;
+        }
+
+        .feeding-system.visible {
+            opacity: 1;
+        }
+
+        /* 飽食度顯示 */
+        /* 飽食度顯示 */
+        /* 飽食度顯示 */
+        .hunger-display {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            z-index: 50;
+        }
+
+        .hunger-label {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .hunger-icons {
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        .hunger-heart {
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .hunger-heart.full {
+            color: #ff6bcf;
+            filter: drop-shadow(0 0 5px rgba(255, 107, 207, 0.6));
+        }
+
+        .hunger-heart.empty {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* 餵食按鈕 */
+        .feed-button {
+            padding: 0.8rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(135deg, rgba(255, 107, 207, 0.4), rgba(167, 139, 250, 0.4));
+            border: 2px solid rgba(255, 107, 207, 0.5);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feed-button:hover {
+            background: linear-gradient(135deg, rgba(255, 107, 207, 0.6), rgba(167, 139, 250, 0.6));
+            border-color: rgba(255, 107, 207, 0.7);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 107, 207, 0.4);
+        }
+
+        .feed-button:active {
+            transform: translateY(-1px);
+        }
+
+        .feed-button.feeding {
+            animation: feed-pulse 0.5s ease;
+        }
+
+        @keyframes feed-pulse {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                transform: translateY(-5px) scale(1.05);
+            }
+        }
+
+        /* === 愛心特效 === */
+        .hearts-container {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 2rem;
+            color: #ff6bcf;
+            opacity: 0;
+            pointer-events: none;
+            filter: drop-shadow(0 0 8px rgba(255, 107, 207, 0.6));
+            animation: heart-float 2s ease-out forwards;
+        }
+
+        @keyframes heart-float {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(0.5) rotate(0deg);
+            }
+
+            50% {
+                opacity: 1;
+                transform: translateY(-80px) scale(1.2) rotate(15deg);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-150px) scale(0.8) rotate(30deg);
+            }
+        }
+
+        /* 寵物吃東西動畫 */
+        .pet.eating {
+            animation: pet-eating 0.6s ease;
+        }
+
+        @keyframes pet-eating {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            25% {
+                transform: scale(1.05) rotate(-3deg);
+            }
+
+            75% {
+                transform: scale(1.05) rotate(3deg);
+            }
+        }
+
+        /* 飽食提示 */
+        .feed-message {
+            position: absolute;
+            top: 25%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 107, 207, 0.2);
+            border: 2px solid rgba(255, 107, 207, 0.5);
+            border-radius: 20px;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 15;
+        }
+
+        .feed-message.show {
+            opacity: 1;
+            animation: message-bounce 0.5s ease;
+        }
+
+        @keyframes message-bounce {
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+
+        /* === 響應式 === */
+        @media (max-width: 768px) {
+            .countdown {
+                font-size: 20vw;
+            }
+
+            .pet {
+                width: 160px;
+                height: 128px;
+            }
+
+            .pet-name {
+                font-size: 1.5rem;
+            }
+
+            .pet-message {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .pomeranian {
+                bottom: 22%;
+            }
+
+            .pomeranian.running,
+            .pomeranian.stopped,
+            .pomeranian.look-up {
+                transform: translateX(calc(50vw - 80px)) !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .pet-container {
+                top: 45%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .pet-name {
+                font-size: 1.4rem;
+                margin-top: 1.5rem;
+            }
+
+            .pet-message {
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .memory-form {
+                bottom: 5%;
+            }
+        }
+
+        /* === 生日特殊按鈕 === */
+        .birthday-special-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 0.6rem 1.2rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(135deg, #ff6bcf, #ffd93d, #6bcf7f, #4ecdc4);
+            background-size: 300% 300%;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            border-radius: 25px;
+            cursor: pointer;
+            z-index: 100;
+            display: none;
+            box-shadow:
+                0 0 20px rgba(255, 107, 207, 0.6),
+                0 0 40px rgba(255, 217, 61, 0.4),
+                0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: birthday-button-glow 3s ease infinite, birthday-button-bounce 2s ease infinite;
+            transition: transform 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .birthday-special-button.show {
+            display: flex;
+        }
+
+        .birthday-special-button:hover {
+            transform: scale(1.1);
+        }
+
+        .birthday-special-button:active {
+            transform: scale(0.95);
+        }
+
+        @keyframes birthday-button-glow {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+                box-shadow:
+                    0 0 20px rgba(255, 107, 207, 0.6),
+                    0 0 40px rgba(255, 217, 61, 0.4),
+                    0 5px 15px rgba(0, 0, 0, 0.3);
+            }
+
+            50% {
+                background-position: 100% 50%;
+                box-shadow:
+                    0 0 30px rgba(255, 107, 207, 0.8),
+                    0 0 60px rgba(255, 217, 61, 0.6),
+                    0 5px 20px rgba(0, 0, 0, 0.4);
+            }
+        }
+
+        @keyframes birthday-button-bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .birthday-special-button {
+                bottom: 15px;
+                right: 15px;
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+            }
+
+            .hunger-display {
+                top: 10px;
+                right: 10px;
+                padding: 0.4rem 0.8rem;
+                gap: 0.4rem;
+            }
+
+            .hunger-label {
+                font-size: 0.75rem;
+            }
+
+            .hunger-heart {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* === 生日蛋糕場景 === */
+        .birthday-cake-scene {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .cake-container {
+            position: relative;
+            width: 280px;
+            height: 320px;
+            animation: cake-appear 1.5s ease-out;
+        }
+
+        @keyframes cake-appear {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            70% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .cake-layer {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 8px;
+        }
+
+        .layer-bottom {
+            bottom: 0;
+            width: 240px;
+            height: 90px;
+            background: linear-gradient(to bottom, #ffb3d9 0%, #ff99cc 100%);
+            border: 4px solid #fff;
+        }
+
+        .layer-middle {
+            bottom: 85px;
+            width: 200px;
+            height: 80px;
+            background: linear-gradient(to bottom, #b3ffcc 0%, #99ffb3 100%);
+            border: 4px solid #fff;
+        }
+
+        .layer-top {
+            bottom: 160px;
+            width: 160px;
+            height: 70px;
+            background: linear-gradient(to bottom, #fffacd 0%, #ffe680 100%);
+            border: 4px solid #fff;
+        }
+
+        .frosting {
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 12px;
+            background: repeating-linear-gradient(90deg,
+                    #fff 0px,
+                    #fff 15px,
+                    transparent 15px,
+                    transparent 30px);
+            border-radius: 0 0 8px 8px;
+        }
+
+        .candle {
+            position: absolute;
+            bottom: 230px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 50px;
+            background: linear-gradient(to bottom, #ff99dd, #cc66ff);
+            border-radius: 2px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .candle::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 8px;
+            background: #333;
+            border-radius: 1px;
+        }
+
+        .flame {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 24px;
+            background: radial-gradient(ellipse at center, #ffeb3b 0%, #ff9800 40%, #ff5722 70%, transparent 100%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: flame-flicker 0.5s ease-in-out infinite alternate;
+            box-shadow: 0 0 20px rgba(255, 150, 0, 0.8);
+        }
+
+        @keyframes flame-flicker {
+            0% {
+                transform: translateX(-50%) scaleY(1) scaleX(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(-50%) scaleY(1.1) scaleX(0.95);
+                opacity: 0.9;
+            }
+        }
+
+        .flame.blown-out {
+            animation: flame-blow-out 0.8s ease-out forwards;
+        }
+
+        @keyframes flame-blow-out {
+            0% {
+                transform: translateX(-50%) scaleY(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: translateX(-30%) scaleY(0.5) scaleX(1.5);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: translateX(-20%) scaleY(0);
+                opacity: 0;
+            }
+        }
+
+        .smoke {
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 4px;
+            background: rgba(150, 150, 150, 0.6);
+            border-radius: 50%;
+            opacity: 0;
+        }
+
+        .smoke.rising {
+            animation: smoke-rise 2s ease-out forwards;
+        }
+
+        @keyframes smoke-rise {
+            0% {
+                transform: translateX(-50%) translateY(0) scale(1);
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: translateX(-50%) translateY(-60px) scale(3);
+                opacity: 0;
+            }
+        }
+
+        .birthday-message {
+            text-align: center;
+            color: #fff;
+            text-shadow: 0 2px 10px rgba(100, 50, 150, 0.6);
+        }
+
+        .birthday-message h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, #ff6bcf, #ffd93d, #6bcf7f);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .birthday-message p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+        }
+
+        .blow-candle-btn {
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(135deg, rgba(255, 107, 207, 0.4), rgba(167, 139, 250, 0.4));
+            border: 2px solid rgba(255, 107, 207, 0.6);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .blow-candle-btn:hover {
+            background: linear-gradient(135deg, rgba(255, 107, 207, 0.6), rgba(167, 139, 250, 0.6));
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(255, 107, 207, 0.5);
+        }
+
+        .close-birthday-btn {
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-birthday-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .confetti-container {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            opacity: 0;
+        }
+
+        .confetti.falling {
+            animation: confetti-fall 3s ease-out forwards;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                opacity: 1;
+                transform: translateY(-20px) rotate(0deg);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(110vh) rotate(720deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cake-container {
+                width: 220px;
+                height: 260px;
+            }
+
+            .layer-bottom {
+                width: 200px;
+                height: 75px;
+            }
+
+            .layer-middle {
+                width: 160px;
+                height: 65px;
+                bottom: 70px;
+            }
+
+            .layer-top {
+                width: 130px;
+                height: 55px;
+                bottom: 130px;
+            }
+
+            .candle {
+                bottom: 185px;
+            }
+
+            .birthday-message h2 {
+                font-size: 2rem;
+            }
+
+            .birthday-message p {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* 查看訊息按鈕 - 左上角 */
+        .top-left-msg-btn {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 100;
+        }
+
+        .action-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.35);
+            border-color: rgba(255, 255, 255, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .action-btn:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            /* ... 其他響應式規則 ... */
+
+            .top-left-msg-btn {
+                top: 10px;
+                left: 10px;
+            }
+
+            .action-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* 彈窗樣式 */
+        .pet-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            /* 初始隱藏 */
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            /* 確保在最上層 */
+            backdrop-filter: blur(8px);
+        }
+
+        .pet-modal-overlay.show {
+            display: flex;
+        }
+
+        .pet-modal-content {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 240, 255, 0.95));
+            padding: 30px;
+            border-radius: 25px;
+            width: 85%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: modal-appear 0.3s ease-out;
+        }
+
+        @keyframes modal-appear {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(-20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .pet-modal-content h3 {
+            color: #ff6bcf;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .pet-modal-content p {
+            color: #333;
+            font-size: 1rem;
+            line-height: 1.8;
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+
+        .close-modal-btn {
+            margin-top: 15px;
+            background: linear-gradient(135deg, #ff6bcf, #a78bfa);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal-btn:hover {
+            background: linear-gradient(135deg, #ff8bd4, #b89fff);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 207, 0.4);
+        }
+
+        .close-modal-btn:active {
+            transform: translateY(0);
+        }
+
+        /* 響應式 */
+        @media (max-width: 768px) {
+            .pet-modal-content {
+                width: 90%;
+                padding: 25px;
+                max-height: 70vh;
+            }
+
+            .pet-modal-content h3 {
+                font-size: 1.5rem;
+            }
+
+            .pet-modal-content p {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* 跳過動畫按鈕 */
+        .skip-animation-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0.6rem 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(100, 255, 100, 0.4);
+            border-radius: 25px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            z-index: 150;
+            transition: all 0.3s ease;
+            display: none;
+            /* 初始隱藏 */
+        }
+
+        .skip-animation-btn.show {
+            display: block;
+        }
+
+        .skip-animation-btn:hover {
+            background: rgba(0, 0, 0, 0.5);
+            border-color: rgba(100, 255, 100, 0.6);
+            color: rgba(100, 255, 100, 1);
+            transform: translateX(-50%) translateY(-3px);
+            box-shadow: 0 5px 15px rgba(100, 255, 100, 0.3);
+        }
+
+        .skip-animation-btn:active {
+            transform: translateX(-50%) translateY(-1px);
+        }
+
+        @media (max-width: 768px) {
+            .skip-animation-btn {
+                bottom: 15px;
+                padding: 0.5rem 1.2rem;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 跳過動畫按鈕 -->
+    <button class="skip-animation-btn" id="skipAnimationBtn">⏭ 跳過動畫</button>
+    <main>
+        <!-- CH1: 奔跑場景 -->
+        <section id="scene-running" class="scene active">
+            <div class="sky">
+                <div class="stars"></div>
+            </div>
+            <div class="moon"></div>
+            <div class="fog"></div>
+            <div class="mountain">
+                <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <!-- 後方的山（左側，較矮較圓） -->
+                    <path class="peak-back"
+                        d="M 0 100 L 0 50 Q 10 35, 20 38 Q 30 30, 40 42 Q 50 38, 60 55 L 60 100 Z" />
+                    <!-- 前方的主山（右側，較高） -->
+                    <path class="peak" d="M 30 100 L 30 65 Q 45 25, 60 22 Q 68 18, 75 22 Q 90 28, 100 70 L 100 100 Z" />
+                </svg>
+            </div>
+            <div class="ground"></div>
+            <div class="tree">
+                <svg viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg">
+                    <!-- 主樹幹 -->
+                    <path class="trunk" d="M 150 280 Q 145 200 150 150 Q 155 200 150 280" stroke-width="8" />
+
+                    <!-- 左側主枝 -->
+                    <path class="branch" d="M 150 180 Q 100 170 60 160" />
+                    <path class="branch" d="M 150 160 Q 110 150 80 145" />
+                    <path class="branch" d="M 150 140 Q 100 130 70 125" />
+
+                    <!-- 右側主枝 -->
+                    <path class="branch" d="M 150 180 Q 200 170 240 160" />
+                    <path class="branch" d="M 150 160 Q 190 150 220 145" />
+                    <path class="branch" d="M 150 140 Q 200 130 230 125" />
+
+                    <!-- 上方枝條 -->
+                    <path class="branch" d="M 150 120 Q 120 100 100 85" />
+                    <path class="branch" d="M 150 120 Q 180 100 200 85" />
+                    <path class="branch" d="M 150 100 Q 130 80 115 65" />
+                    <path class="branch" d="M 150 100 Q 170 80 185 65" />
+
+                    <!-- 細小枝條（左） -->
+                    <path class="branch" d="M 80 145 Q 70 140 65 135" stroke-width="1" />
+                    <path class="branch" d="M 80 145 Q 75 150 70 155" stroke-width="1" />
+                    <path class="branch" d="M 70 125 Q 60 120 55 115" stroke-width="1" />
+                    <path class="branch" d="M 100 85 Q 90 75 85 70" stroke-width="1" />
+
+                    <!-- 細小枝條（右） -->
+                    <path class="branch" d="M 220 145 Q 230 140 235 135" stroke-width="1" />
+                    <path class="branch" d="M 220 145 Q 225 150 230 155" stroke-width="1" />
+                    <path class="branch" d="M 230 125 Q 240 120 245 115" stroke-width="1" />
+                    <path class="branch" d="M 200 85 Q 210 75 215 70" stroke-width="1" />
+
+                    <!-- 櫻花花團（初始不可見） -->
+                    <!-- 左側花團 -->
+                    <circle class="blossom" cx="60" cy="160" r="25" fill="#ffb7d5" opacity="0.9" />
+                    <circle class="blossom" cx="50" cy="145" r="20" fill="#ffc0e0" opacity="0.85" />
+                    <circle class="blossom" cx="80" cy="145" r="22" fill="#ffaad0" opacity="0.9" />
+                    <circle class="blossom" cx="70" cy="125" r="23" fill="#ffb7d5" opacity="0.88" />
+                    <circle class="blossom" cx="55" cy="135" r="18" fill="#ffc8e5" opacity="0.85" />
+                    <circle class="blossom" cx="65" cy="155" r="20" fill="#ffaad0" opacity="0.87" />
+
+                    <!-- 右側花團 -->
+                    <circle class="blossom" cx="240" cy="160" r="25" fill="#ffb7d5" opacity="0.9" />
+                    <circle class="blossom" cx="250" cy="145" r="20" fill="#ffc0e0" opacity="0.85" />
+                    <circle class="blossom" cx="220" cy="145" r="22" fill="#ffaad0" opacity="0.9" />
+                    <circle class="blossom" cx="230" cy="125" r="23" fill="#ffb7d5" opacity="0.88" />
+                    <circle class="blossom" cx="245" cy="135" r="18" fill="#ffc8e5" opacity="0.85" />
+                    <circle class="blossom" cx="235" cy="155" r="20" fill="#ffaad0" opacity="0.87" />
+
+                    <!-- 上方花團 -->
+                    <circle class="blossom" cx="100" cy="85" r="24" fill="#ffb7d5" opacity="0.9" />
+                    <circle class="blossom" cx="115" cy="65" r="22" fill="#ffc0e0" opacity="0.88" />
+                    <circle class="blossom" cx="90" cy="75" r="20" fill="#ffaad0" opacity="0.87" />
+                    <circle class="blossom" cx="200" cy="85" r="24" fill="#ffb7d5" opacity="0.9" />
+                    <circle class="blossom" cx="185" cy="65" r="22" fill="#ffc0e0" opacity="0.88" />
+                    <circle class="blossom" cx="210" cy="75" r="20" fill="#ffaad0" opacity="0.87" />
+
+                    <!-- 中央花團 -->
+                    <circle class="blossom" cx="150" cy="120" r="26" fill="#ffb7d5" opacity="0.92" />
+                    <circle class="blossom" cx="135" cy="110" r="22" fill="#ffc0e0" opacity="0.88" />
+                    <circle class="blossom" cx="165" cy="110" r="22" fill="#ffaad0" opacity="0.88" />
+                    <circle class="blossom" cx="150" cy="100" r="24" fill="#ffc8e5" opacity="0.9" />
+                    <circle class="blossom" cx="140" cy="130" r="20" fill="#ffb7d5" opacity="0.85" />
+                    <circle class="blossom" cx="160" cy="130" r="20" fill="#ffaad0" opacity="0.85" />
+
+                    <!-- 額外的小花團點綴 -->
+                    <circle class="blossom" cx="110" cy="150" r="18" fill="#ffc0e0" opacity="0.83" />
+                    <circle class="blossom" cx="190" cy="150" r="18" fill="#ffb7d5" opacity="0.83" />
+                    <circle class="blossom" cx="130" cy="90" r="16" fill="#ffaad0" opacity="0.8" />
+                    <circle class="blossom" cx="170" cy="90" r="16" fill="#ffc8e5" opacity="0.8" />
+                </svg>
+            </div>
+
+            <!-- 史萊姆型寵物 SVG -->
+            <svg class="pomeranian" viewBox="0 0 200 160" aria-label="跳躍的小夥伴">
+                <!-- 圓胖身體 -->
+                <ellipse cx="100" cy="110" rx="50" ry="45" fill="#3a3a3a" />
+                <!-- 圓胖頭 -->
+                <circle cx="100" cy="65" r="32" fill="#3a3a3a" />
+                <!-- 耳朵 -->
+                <circle cx="78" cy="48" r="12" fill="#3a3a3a" />
+                <circle cx="122" cy="48" r="12" fill="#3a3a3a" />
+                <!-- 小鼻子 -->
+                <circle cx="100" cy="70" r="3" fill="#2a2a2a" />
+                <!-- 微笑的嘴 -->
+                <path d="M 92 75 Q 100 80, 108 75" stroke="#2a2a2a" stroke-width="1.5" fill="none"
+                    stroke-linecap="round" />
+                <!-- 蓬鬆尾巴 -->
+                <circle class="tail" cx="145" cy="100" r="20" fill="#3a3a3a" />
+            </svg>
+        </section>
+
+        <!-- CH2: 櫻花樹場景 -->
+        <section id="scene-sakura" class="scene">
+            <div class="sky">
+                <div class="stars"></div>
+            </div>
+            <div class="moon"></div>
+            <div class="fog"></div>
+            <div class="mountain">
+                <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <!-- 後方的山（左側，較矮較圓） -->
+                    <path class="peak-back"
+                        d="M 0 100 L 0 50 Q 10 35, 20 38 Q 30 30, 40 42 Q 50 38, 60 55 L 60 100 Z" />
+                    <!-- 前方的主山（右側，較高） -->
+                    <path class="peak" d="M 30 100 L 30 65 Q 45 25, 60 22 Q 68 18, 75 22 Q 90 28, 100 70 L 100 100 Z" />
+                </svg>
+            </div>
+            <div class="ground"></div>
+
+            <!-- 城市夜景燈光 -->
+            <div class="city-lights"></div>
+
+            <div class="tree">
+                <svg viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg">
+                    <!-- 主樹幹 -->
+                    <path class="trunk" d="M 150 280 Q 145 200 150 150 Q 155 200 150 280" stroke-width="8" />
+
+                    <!-- 左側主枝 -->
+                    <path class="branch" d="M 150 180 Q 100 170 60 160" />
+                    <path class="branch" d="M 150 160 Q 110 150 80 145" />
+                    <path class="branch" d="M 150 140 Q 100 130 70 125" />
+
+                    <!-- 右側主枝 -->
+                    <path class="branch" d="M 150 180 Q 200 170 240 160" />
+                    <path class="branch" d="M 150 160 Q 190 150 220 145" />
+                    <path class="branch" d="M 150 140 Q 200 130 230 125" />
+
+                    <!-- 上方枝條 -->
+                    <path class="branch" d="M 150 120 Q 120 100 100 85" />
+                    <path class="branch" d="M 150 120 Q 180 100 200 85" />
+                    <path class="branch" d="M 150 100 Q 130 80 115 65" />
+                    <path class="branch" d="M 150 100 Q 170 80 185 65" />
+
+                    <!-- 細小枝條（左） -->
+                    <path class="branch" d="M 80 145 Q 70 140 65 135" stroke-width="1" />
+                    <path class="branch" d="M 80 145 Q 75 150 70 155" stroke-width="1" />
+                    <path class="branch" d="M 70 125 Q 60 120 55 115" stroke-width="1" />
+                    <path class="branch" d="M 100 85 Q 90 75 85 70" stroke-width="1" />
+
+                    <!-- 細小枝條（右） -->
+                    <path class="branch" d="M 220 145 Q 230 140 235 135" stroke-width="1" />
+                    <path class="branch" d="M 220 145 Q 225 150 230 155" stroke-width="1" />
+                    <path class="branch" d="M 230 125 Q 240 120 245 115" stroke-width="1" />
+                    <path class="branch" d="M 200 85 Q 210 75 215 70" stroke-width="1" />
+
+                    <!-- 櫻花花團（初始不可見） -->
+                    <!-- 左側花團 -->
+                    <circle class="blossom" cx="60" cy="160" r="25" fill="#ffb7d5" opacity="0.9" />
+                    <circle class="blossom" cx="50" cy="145" r="20" fill="#ffc0e0" opacity="0.85" />
+                    <circle class="blossom" cx="80" cy="145" r="22" fill="#ffaad0" opacity="0.9" />
+                    <circle class="blossom" cx="70" cy="125" r="23" fill="#ffb7d5" opacity="0.88" />
+                    <circle class="blossom" cx="55" cy="135" r="18" fill="#ffc8e5" opacity="0.85" />
+                    <circle class="blossom" cx="65" cy="155" r="20" fill="#ffaad0" opacity="0.87" />
+
+                    <!-- 右側花團 -->
+                    <circle class="blossom" cx="240" cy="160" r="25" fill="#ffb7d5" opacity="0.9" />
+                    <circle class="blossom" cx="250" cy="145" r="20" fill="#ffc0e0" opacity="0.85" />
+                    <circle class="blossom" cx="220" cy="145" r="22" fill="#ffaad0" opacity="0.9" />
+                    <circle class="blossom" cx="230" cy="125" r="23" fill="#ffb7d5" opacity="0.88" />
+                    <circle class="blossom" cx="245" cy="135" r="18" fill="#ffc8e5" opacity="0.85" />
+                    <circle class="blossom" cx="235" cy="155" r="20" fill="#ffaad0" opacity="0.87" />
+
+                    <!-- 上方花團 -->
+                    <circle class="blossom" cx="100" cy="85" r="24" fill="#ffb7d5" opacity="0.9" />
+                    <circle class="blossom" cx="115" cy="65" r="22" fill="#ffc0e0" opacity="0.88" />
+                    <circle class="blossom" cx="90" cy="75" r="20" fill="#ffaad0" opacity="0.87" />
+                    <circle class="blossom" cx="200" cy="85" r="24" fill="#ffb7d5" opacity="0.9" />
+                    <circle class="blossom" cx="185" cy="65" r="22" fill="#ffc0e0" opacity="0.88" />
+                    <circle class="blossom" cx="210" cy="75" r="20" fill="#ffaad0" opacity="0.87" />
+
+                    <!-- 中央花團 -->
+                    <circle class="blossom" cx="150" cy="120" r="26" fill="#ffb7d5" opacity="0.92" />
+                    <circle class="blossom" cx="135" cy="110" r="22" fill="#ffc0e0" opacity="0.88" />
+                    <circle class="blossom" cx="165" cy="110" r="22" fill="#ffaad0" opacity="0.88" />
+                    <circle class="blossom" cx="150" cy="100" r="24" fill="#ffc8e5" opacity="0.9" />
+                    <circle class="blossom" cx="140" cy="130" r="20" fill="#ffb7d5" opacity="0.85" />
+                    <circle class="blossom" cx="160" cy="130" r="20" fill="#ffaad0" opacity="0.85" />
+
+                    <!-- 額外的小花團點綴 -->
+                    <circle class="blossom" cx="110" cy="150" r="18" fill="#ffc0e0" opacity="0.83" />
+                    <circle class="blossom" cx="190" cy="150" r="18" fill="#ffb7d5" opacity="0.83" />
+                    <circle class="blossom" cx="130" cy="90" r="16" fill="#ffaad0" opacity="0.8" />
+                    <circle class="blossom" cx="170" cy="90" r="16" fill="#ffc8e5" opacity="0.8" />
+                </svg>
+            </div>
+
+            <!-- 櫻花花瓣容器 -->
+            <div class="petals"></div>
+
+            <!-- 倒數數字 -->
+            <div class="countdown" id="countdownNumber">10</div>
+
+            <!-- 2026 特效 -->
+            <div class="year-glow" id="yearGlow"></div>
+            <div class="year-2026" id="year2026">2026</div>
+            <div class="happy-new-year" id="happyNewYear">新年快樂 </div>
+            <div class="year-particles" id="yearParticles"></div>
+
+            <!-- 煙火容器 -->
+            <div class="fireworks" id="fireworksContainer"></div>
+
+            <!-- 史萊姆（已停下） -->
+            <svg class="pomeranian stopped" style="left: calc(38vw - 80px);" viewBox="0 0 200 160">
+                <!-- 圓胖身體 -->
+                <ellipse cx="100" cy="110" rx="50" ry="45" fill="#3a3a3a" />
+                <!-- 圓胖頭 -->
+                <circle cx="100" cy="65" r="32" fill="#3a3a3a" />
+                <!-- 耳朵 -->
+                <circle cx="78" cy="48" r="12" fill="#3a3a3a" />
+                <circle cx="122" cy="48" r="12" fill="#3a3a3a" />
+                <!-- 小鼻子 -->
+                <circle cx="100" cy="70" r="3" fill="#2a2a2a" />
+                <!-- 微笑的嘴 -->
+                <path d="M 92 75 Q 100 80, 108 75" stroke="#2a2a2a" stroke-width="1.5" fill="none"
+                    stroke-linecap="round" />
+                <!-- 蓬鬆尾巴 -->
+                <circle class="tail" cx="145" cy="100" r="20" fill="#3a3a3a" />
+            </svg>
+        </section>
+
+        <!-- CH3: 星星飛來 -->
+        <section id="scene-star" class="scene">
+            <div class="sky">
+                <div class="stars"></div>
+            </div>
+
+            <!-- 流星 -->
+            <div class="shooting-star"></div>
+
+            <!-- 孵化提示 -->
+            <div class="hatch-hint">
+                <p>有什麼，正在等你</p>
+                <button class="hatch-btn" id="hatchBtn">開始孵化</button>
+            </div>
+        </section>
+
+        <!-- CH4: 孵化場景 -->
+        <section id="scene-hatching" class="scene">
+            <div class="sky">
+                <div class="stars"></div>
+            </div>
+
+            <div class="hatching-egg">
+                <div class="crack crack-1"></div>
+                <div class="crack crack-2"></div>
+                <div class="crack crack-3"></div>
+                <div class="inner-light"></div>
+            </div>
+
+            <p class="hatch-message">有什麼，正在裡面醒來</p>
+        </section>
+
+        <!-- CH5: 寵物首頁 -->
+        <section id="scene-pet-home" class="scene">
+
+
+            <!-- 🎂 生日特殊按鈕（只在生日當天顯示） -->
+            <button class="birthday-special-button" id="birthdaySpecialBtn">
+                🎂
+            </button>
+            <!-- 夢幻背景 - 將圖片放在這裡 -->
+            <div class="dreamy-bg">
+                <!-- 
+                    背景圖片使用說明：
+                    1. 將 background.png 放在與 index.html 同一個資料夾
+                    2. 如果要用其他圖片，修改下方的 url('background.png')
+                    3. 例如：url('images/my-image.png') 或完整網址
+                    
+                    檢查圖片是否載入：
+                    - 按 F12 打開開發者工具
+                    - 到 Console 標籤查看載入訊息
+                    - 如果看到 "✅ 背景圖片載入成功！" 表示成功
+                    - 如果看到 "❌ 背景圖片載入失敗" 表示路徑錯誤
+                -->
+                <div class="dreamy-bg-image" id="bgImage" style="background-image: url('background.png');"></div>
+                <!-- 疊加漸層 -->
+                <div class="dreamy-overlay"></div>
+                <!-- 魔法粒子 -->
+                <div class="magic-particles"></div>
+            </div>
+
+            <!-- 星空 -->
+            <div class="sky">
+                <div class="stars"></div>
+            </div>
+
+            <!-- 森林剪影 -->
+            <div class="forest-silhouette"></div>
+
+            <!-- 回家小路 -->
+            <div class="path-home"></div>
+
+            <!-- 溫暖燈光 -->
+            <div class="warm-lights"></div>
+
+            <!-- 慶祝煙火 -->
+            <div class="celebration-fireworks" id="celebrationFireworks"></div>
+
+            <div class="pet-container">
+                <svg class="pet" id="petSvg" viewBox="0 0 200 160" aria-label="你的跨年小寵物">
+                    <ellipse cx="100" cy="110" rx="50" ry="45" />
+                    <circle cx="100" cy="65" r="32" />
+                    <circle cx="78" cy="48" r="12" />
+                    <circle cx="122" cy="48" r="12" />
+                    <circle class="eye left" cx="88" cy="65" r="4" fill="#000" />
+                    <circle class="eye right" cx="112" cy="65" r="4" fill="#000" />
+                    <circle class="tail" cx="145" cy="100" r="20" />
+                </svg>
+
+                <h1 class="pet-name">你的跨年小夥伴</h1>
+                <p class="pet-message" id="petMessage">
+                    謝謝你走到這裡<br>
+                    接下來的日子，就讓我陪你吧
+                </p>
+            </div>
+
+            <!-- 愛心特效容器 -->
+            <div class="hearts-container" id="heartsContainer"></div>
+
+            <!-- 餵食提示訊息 -->
+            <div class="feed-message" id="feedMessage">好好吃~ ❤</div>
+
+            <!-- 記憶表單 -->
+            <div class="memory-form" id="memoryForm">
+                <input id="ownerName" type="text" placeholder="你的名字" maxlength="10">
+                <input id="ownerBirthday" type="date">
+                <button id="saveMemoryBtn">讓我記住你</button>
+            </div>
+
+            <!-- 飽食度顯示（獨立於餵食系統之外） -->
+            <div class="hunger-display" id="hungerDisplay">
+                <span class="hunger-label">飽食</span>
+                <div class="hunger-icons" id="hungerIcons">
+                    <span class="hunger-heart full">❤</span>
+                    <span class="hunger-heart full">❤</span>
+                    <span class="hunger-heart full">❤</span>
+                    <span class="hunger-heart full">❤</span>
+                    <span class="hunger-heart full">❤</span>
+                </div>
+            </div>
+
+            <!-- 餵食系統 -->
+            <div class="feeding-system" id="feedingSystem">
+                <button class="feed-button" id="feedButton">
+                    <span>🍪</span>
+                    <span>餵食</span>
+                </button>
+            </div>
+
+            <div class="top-left-msg-btn">
+                <button class="action-btn" onclick="togglePetModal(true)">查看訊息</button>
+            </div>
+
+            <div id="petModal" class="pet-modal-overlay">
+                <div class="pet-modal-content">
+                    <h3>💌 秘密訊息</h3>
+                    <p id="petModalText">好啦說了這麼多! 今天也是特別的日子啦！！ 咳咳 老實說今天是第一次幫人家在跨年的時候慶生欸~~~~好酷啊啊啊😖 但還是要說 小壽星！生日快樂
+                        たんしょびおめでと🎉🎂🎈 恭喜你迎來人生21歲的生日啦~~ 希望你在21歲的時候 心裡想的都會實現啦 研究所還有一段時間~ 雖然你聽了我說好久的心靈雞湯嗎（？
+                        不過呀考研過程很艱辛 要好好加油啦！！ 我們都會陪在你身邊的！ 大家一起努力啦~ 往人生的目標邁進嘛~~ 加油加油！ 希望你可以考上理想的研究所啦！ 有什麼問題都可以來問我啦
+                        或者有什麼煩惱之類的 都可以說說 不過呀當然希望每天一定要開心啦 煩惱全都忘光光是最好的°^° 好吧我想了很久 最後還是選了一個最符合你風格的東西 請好好收下吧蔡哥！
+                        但總覺得你拿到後就會瘋狂傳哈哈哈 不過最近感覺你已經喜歡用telegram 了嗎哈哈哈？！畢竟那裡有免費的 好啦好啦我真的覺得我太會打一些廢話啦！ 今天是你特別的日子
+                        壽星可以許個願啦！ 1. 2. 3.（記得留在心裡不要說出來） 希望今天的你能夠願望都實現啦~ 🪄🌟 最好的祝福給你！ 最後要再說一次！ 之後請多多關照啦！</p>
+                    <button class="close-modal-btn" onclick="togglePetModal(false)">關閉 ✨</button>
+                </div>
+            </div>
+        </section>
+
+
+
+        <section id="scene-birthday" class="scene">
+            <div class="sky">
+                <div class="stars"></div>
+            </div>
+            <div class="moon"></div>
+
+            <div class="birthday-cake-scene">
+                <div class="birthday-message">
+                    <h2 id="birthdayName">生日快樂！</h2>
+                    <p>願你的每個願望都能實現 ✨</p>
+                </div>
+
+                <div class="cake-container">
+                    <div class="cake-layer layer-bottom">
+                        <div class="frosting"></div>
+                    </div>
+                    <div class="cake-layer layer-middle">
+                        <div class="frosting"></div>
+                    </div>
+                    <div class="cake-layer layer-top">
+                        <div class="frosting"></div>
+                    </div>
+
+                    <div class="candle">
+                        <div class="flame" id="cakeFlame"></div>
+                        <div class="smoke" id="cakeSmoke"></div>
+                    </div>
+                </div>
+
+                <button class="blow-candle-btn" id="blowCandleBtn">🎈 吹蠟燭許願 🎈</button>
+                <button class="close-birthday-btn" id="closeBirthdayBtn" style="display: none;">關閉 ✨</button>
+            </div>
+
+            <div class="confetti-container" id="confettiContainer"></div>
+        </section>
+    </main>
+
+
+    <script>
+        // ==========================================
+        // 跳過動畫功能
+        // ==========================================
+        let skipBtn = null;
+        let isAnimationSkipped = false;
+
+        function initSkipButton() {
+            skipBtn = document.getElementById("skipAnimationBtn");
+
+            // 檢查是否已填過名字和生日
+            const name = localStorage.getItem(NAME_KEY);
+            const birthday = localStorage.getItem(BDAY_KEY);
+
+            if (name && birthday) {
+                // ✅ 已填完名字和生日 - 顯示按鈕
+                skipBtn.textContent = "⏭ 跳過動畫";
+                skipBtn.classList.add("show");
+            } else {
+                // ❌ 未填完 - 隱藏按鈕
+                skipBtn.classList.remove("show");
+            }
+
+            // 點擊跳過
+            skipBtn.addEventListener("click", skipToHome);
+        }
+
+        function skipToHome() {
+            if (isAnimationSkipped) return;
+
+            // ✅ 檢查是否已經填寫名字和生日
+            const name = localStorage.getItem(NAME_KEY);
+            const birthday = localStorage.getItem(BDAY_KEY);
+
+            if (!name || !birthday) {
+                // ❌ 資料不完整 - 隱藏按鈕（理論上不會執行到這裡）
+                skipBtn.classList.remove("show");
+                return;
+            }
+
+            // ✅ 資料完整 - 允許跳過
+            isAnimationSkipped = true;
+
+            // 隱藏所有場景
+            document.querySelectorAll(".scene").forEach(s => s.classList.remove("active"));
+
+            // 直接顯示寵物首頁
+            const homeScene = document.getElementById("scene-pet-home");
+            homeScene.classList.add("active");
+
+            // 隱藏跳過按鈕
+            skipBtn.classList.remove("show");
+
+            // 初始化寵物首頁
+            checkBackgroundImage();
+            startCelebrationFireworks();
+            initializePetHome();
+        }
+
+        function hideSkipButton() {
+            if (skipBtn) {
+                skipBtn.classList.remove("show");
+            }
+        }
+        // ==========================================
+        // 主控制流程
+        // ==========================================
+
+        // 啟動整個體驗
+        function startExperience() {
+            // CH1: 史萊姆跳躍 (8秒)
+            startRunningScene();
+
+            setTimeout(() => {
+                // CH2: 櫻花樹場景
+                transitionToSakura();
+            }, 8000);
+        }
+
+        // ==========================================
+        // CH1: 奔跑場景
+        // ==========================================
+        function startRunningScene() {
+            const scene = document.getElementById("scene-running");
+            const pom = scene.querySelector(".pomeranian");
+
+            // 啟動跳躍動畫
+            pom.classList.add("running");
+
+            // 4秒後樹木開始變成櫻花樹
+            setTimeout(() => {
+                scene.classList.add("transform");
+            }, 4000);
+
+            // 8秒後史萊姆停下
+            setTimeout(() => {
+                pom.classList.remove("running");
+                pom.classList.add("stopped");
+            }, 8000);
+        }
+
+        // ==========================================
+        // CH2: 櫻花樹場景
+        // ==========================================
+        function transitionToSakura() {
+            // 切換場景
+            document.getElementById("scene-running").classList.remove("active");
+            const sakuraScene = document.getElementById("scene-sakura");
+            sakuraScene.classList.add("active");
+            sakuraScene.classList.add("transform"); // 櫻花樹狀態
+
+            // 生成櫻花
+            spawnPetals(sakuraScene.querySelector(".petals"), 20);
+
+            const pom = sakuraScene.querySelector(".pomeranian");
+
+            // 2秒後史萊姆抬頭
+            setTimeout(() => {
+                pom.classList.add("look-up");
+            }, 2000);
+
+            // 3秒後顯示夜景燈光
+            setTimeout(() => {
+                sakuraScene.classList.add("show-city");
+            }, 3000);
+
+            // 6秒後開始倒數
+            setTimeout(() => {
+                startCountdown(10);
+            }, 6000);
+        }
+
+        // 生成櫻花花瓣
+        function spawnPetals(container, count) {
+            container.innerHTML = "";
+            const w = window.innerWidth;
+
+            for (let i = 0; i < count; i++) {
+                const petal = document.createElement("div");
+                petal.className = "petal";
+
+                const left = -50 + Math.random() * (w + 100); // 從左外到右外
+                const duration = 8 + Math.random() * 8; // 8-16秒
+                const delay = Math.random() * 6; // 0-6秒延遲
+                const size = 10 + Math.random() * 8; // 10-18px
+
+                petal.style.left = `${left}px`;
+                petal.style.width = `${size}px`;
+                petal.style.height = `${size}px`;
+                petal.style.animationDuration = `${duration}s`;
+                petal.style.animationDelay = `${delay}s`;
+
+                container.appendChild(petal);
+            }
+        }
+
+        // 倒數計時
+        function startCountdown(from) {
+            const el = document.getElementById("countdownNumber");
+            el.classList.add("visible");
+            let n = from;
+            el.textContent = String(n);
+
+            const timer = setInterval(() => {
+                n -= 1;
+                el.textContent = String(n);
+
+                if (n <= 0) {
+                    clearInterval(timer);
+                    el.classList.remove("visible");
+
+                    // 倒數結束：顯示 2026 特效
+                    show2026Effect();
+
+                    // 🎆 立即開始放煙火（持續 27 秒）
+                    triggerFireworks();
+
+                    // 🎊 時間軸：
+                    // 0-6秒：2026 + 煙火
+                    // 6-7秒：過場
+                    // 7-14秒：新年快樂 + 煙火
+                    // 14-27秒：只有煙火
+                    // 27-28秒：淡出
+                    // 總共 28 秒
+                    setTimeout(() => {
+                        transitionToStar();
+                    }, 28000); // 總共 28 秒後切換
+                }
+            }, 1000);
+        }
+
+        // 顯示 2026 特效
+        // 顯示 2026 與 新年快樂特效 (修改後的版本)
+        function show2026Effect() {
+            const year = document.getElementById("year2026");
+            const happy = document.getElementById("happyNewYear");
+            const glow = document.getElementById("yearGlow");
+
+            // --- 階段 1: 顯示 2026 ---
+            year.style.opacity = "1";
+            year.classList.add("show");
+            glow.classList.add("active");
+
+            // 1.5秒後開始慶祝動畫
+            setTimeout(() => {
+                year.classList.add("celebrate");
+                create2026Particles();
+            }, 1500);
+
+            // --- 階段 2: 9秒後隱藏 2026，準備顯示新年快樂 ---
+            setTimeout(() => {
+                year.style.transition = "opacity 1s ease";
+                year.style.opacity = "0";
+                glow.style.transition = "opacity 1s ease";
+                glow.style.opacity = "0";
+
+                // 1秒後（2026 完全消失後）顯示新年快樂
+                setTimeout(() => {
+                    happy.style.opacity = "1";
+                    happy.classList.add("show");
+
+                    // 1秒後開始彈跳動畫
+                    setTimeout(() => {
+                        happy.classList.add("celebrate");
+                    }, 1000);
+
+                    // --- 階段 3: 新年快樂顯示 9 秒後消失 ---
+                    setTimeout(() => {
+                        happy.style.transition = "opacity 1s ease";
+                        happy.style.opacity = "0";
+                    }, 9000); // 顯示 9 秒
+
+                }, 1000); // 銜接間隔
+
+            }, 9000); // 2026 顯示 9 秒
+        }
+
+        // 隱藏 2026 特效
+        function hide2026Effect() {
+            const year = document.getElementById("year2026");
+            const happy = document.getElementById("happyNewYear");
+            const glow = document.getElementById("yearGlow");
+
+            year.style.transition = "opacity 1s ease";
+            year.style.opacity = "0";
+            happy.style.transition = "opacity 1s ease";
+            happy.style.opacity = "0";
+            glow.style.transition = "opacity 1s ease";
+            glow.style.opacity = "0";
+        }
+
+        // 隱藏新年快樂
+        function hideHappyNewYear() {
+            const happy = document.getElementById("happyNewYear");
+            happy.style.transition = "opacity 1s ease";
+            happy.style.opacity = "0";
+        }
+
+        // 創建 2026 周圍的粒子特效
+        function create2026Particles() {
+            const container = document.getElementById("yearParticles");
+            const colors = ["#ff6b6b", "#ffd93d", "#6bcf7f", "#4ecdc4", "#a78bfa", "#ff6bcf"];
+
+            // 每0.3秒發射一次粒子，持續12秒
+            let count = 0;
+            const particleInterval = setInterval(() => {
+                if (count >= 40) {
+                    clearInterval(particleInterval);
+                    return;
+                }
+
+                // 從 2026 周圍隨機位置發射
+                const centerX = 50;
+                const centerY = 40;
+                const angle = Math.random() * Math.PI * 2;
+                const radius = 15 + Math.random() * 10; // 15-25%
+
+                const startX = centerX + Math.cos(angle) * radius;
+                const startY = centerY + Math.sin(angle) * radius;
+
+                // 粒子飛向的目標位置
+                const targetAngle = angle + (Math.random() - 0.5) * 1;
+                const distance = 30 + Math.random() * 40;
+                const targetX = startX + Math.cos(targetAngle) * distance;
+                const targetY = startY + Math.sin(targetAngle) * distance;
+
+                const color = colors[Math.floor(Math.random() * colors.length)];
+
+                createYearParticle(container, startX, startY, targetX, targetY, color);
+                count++;
+            }, 300);
+        }
+
+        function createYearParticle(container, startX, startY, targetX, targetY, color) {
+            const particle = document.createElement("div");
+            particle.className = "year-particle";
+            particle.style.left = `${startX}%`;
+            particle.style.top = `${startY}%`;
+            particle.style.background = color;
+            particle.style.boxShadow = `0 0 12px ${color}`;
+
+            const dx = targetX - startX;
+            const dy = targetY - startY;
+
+            container.appendChild(particle);
+
+            // 開始動畫
+            setTimeout(() => {
+                particle.classList.add("burst");
+                particle.style.transform = `translate(${dx}vh, ${dy}vh) scale(0)`;
+            }, 10);
+
+            // 清理
+            setTimeout(() => particle.remove(), 2100);
+        }
+
+        // 煙火效果 - 真實的爆炸粒子（增加煙火數量和持續時間）
+        function triggerFireworks() {
+            const container = document.getElementById("fireworksContainer");
+            const colors = ["#ff6b6b", "#4ecdc4", "#ffe66d", "#a8e6cf", "#ffa8e4", "#ff9999", "#66d9ff"];
+
+            // 50次煙火，持續約23秒
+            for (let i = 0; i < 60; i++) {
+                setTimeout(() => {
+                    createFirework(container, colors);
+                }, i * 450);
+            }
+        }
+
+        function createFirework(container, colors) {
+            const x = 15 + Math.random() * 70; // 15-85%
+            const y = 10 + Math.random() * 40; // 10-50%
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            const particleCount = 30 + Math.floor(Math.random() * 20); // 30-50個粒子
+
+            // 創建爆炸中心點
+            const center = document.createElement("div");
+            center.className = "firework";
+            center.style.left = `${x}%`;
+            center.style.top = `${y}%`;
+            container.appendChild(center);
+
+            // 創建放射狀粒子
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement("div");
+                particle.className = "firework-particle";
+                particle.style.background = color;
+                particle.style.boxShadow = `0 0 10px ${color}`;
+
+                // 計算粒子的飛行方向
+                const angle = (i / particleCount) * Math.PI * 2;
+                const velocity = 80 + Math.random() * 80; // 80-160px
+                const tx = Math.cos(angle) * velocity;
+                const ty = Math.sin(angle) * velocity;
+
+                particle.style.setProperty('--tx', `${tx}px`);
+                particle.style.setProperty('--ty', `${ty}px`);
+
+                // 設置動畫
+                particle.style.animation = `particle-explode 1.2s ease-out forwards`;
+                particle.style.transform = `translate(0, 0)`;
+
+                // 使用CSS變數來設置最終位置
+                setTimeout(() => {
+                    particle.style.transform = `translate(${tx}px, ${ty}px) scale(0)`;
+                }, 10);
+
+                center.appendChild(particle);
+            }
+
+            setTimeout(() => center.remove(), 1500);
+        }
+
+        // ==========================================
+        // CH3: 星星飛來場景
+        // ==========================================
+        function transitionToStar() {
+            // 切換場景
+            document.getElementById("scene-sakura").classList.remove("active");
+            const starScene = document.getElementById("scene-star");
+            starScene.classList.add("active");
+
+            const star = starScene.querySelector(".shooting-star");
+
+            // 星星飛來
+            setTimeout(() => {
+                star.classList.add("flying");
+            }, 500);
+
+            // 星星停住後變成蛋
+            setTimeout(() => {
+                star.classList.add("transform-to-egg");
+            }, 2500);
+
+            // 顯示孵化提示
+            setTimeout(() => {
+                const hint = starScene.querySelector(".hatch-hint");
+                hint.classList.add("visible");
+            }, 4500);
+        }
+
+        // ==========================================
+        // CH4: 孵化場景
+        // ==========================================
+        document.getElementById("hatchBtn").addEventListener("click", startHatching);
+
+        function startHatching() {
+            // 切換場景
+            document.getElementById("scene-star").classList.remove("active");
+            const hatchScene = document.getElementById("scene-hatching");
+            hatchScene.classList.add("active");
+
+            // 裂紋出現（延遲3秒）
+            setTimeout(() => {
+                hatchScene.classList.add("cracking");
+            }, 3000);
+
+            // 內部發光（延遲5秒）
+            setTimeout(() => {
+                hatchScene.classList.add("light");
+            }, 5000);
+
+            // 誕生（延遲8秒）
+            setTimeout(() => {
+                showPetHome();
+            }, 8000);
+        }
+
+        // ==========================================
+        // CH5: 寵物首頁
+        // ==========================================
+        function showPetHome() {
+            // 切換場景
+            document.getElementById("scene-hatching").classList.remove("active");
+            const homeScene = document.getElementById("scene-pet-home");
+            homeScene.classList.add("active");
+
+            // 檢測背景圖片是否載入
+            checkBackgroundImage();
+
+            // 啟動慶祝煙火
+            startCelebrationFireworks();
+
+            // 檢查是否已有記憶
+            initializePetHome();
+        }
+
+        // 初始化寵物首頁
+        function initializePetHome() {
+            const name = localStorage.getItem(NAME_KEY);
+
+            if (!name) {
+                // 未設定記憶 - 鎖定所有互動功能
+                lockPetInteractions();
+            } else {
+                // 已設定記憶 - 載入資料並解鎖功能
+                loadMemoryIfExists();
+            }
+        }
+
+        // 鎖定寵物互動功能
+        function lockPetInteractions() {
+            const petContainer = document.querySelector(".pet-container");
+            const feedingSystem = document.getElementById("feedingSystem");
+            const birthdayBtn = document.getElementById("birthdaySpecialBtn");
+
+            petContainer.classList.add("locked");
+            feedingSystem.classList.add("locked");
+            birthdayBtn.classList.add("locked");
+        }
+
+        // 解鎖寵物互動功能
+        function unlockPetInteractions() {
+            const petContainer = document.querySelector(".pet-container");
+            const feedingSystem = document.getElementById("feedingSystem");
+            const birthdayBtn = document.getElementById("birthdaySpecialBtn");
+
+            petContainer.classList.remove("locked");
+            feedingSystem.classList.remove("locked");
+            birthdayBtn.classList.remove("locked");
+        }
+
+        // 檢測背景圖片載入狀態
+        function checkBackgroundImage() {
+            const bgElement = document.getElementById("bgImage");
+            const bgStyle = window.getComputedStyle(bgElement);
+            const bgImage = bgStyle.backgroundImage;
+
+            // 檢查是否有設定背景圖片
+            if (bgImage && bgImage !== 'none') {
+                // 嘗試載入圖片
+                const imageUrl = bgImage.match(/url\(["']?([^"']*)["']?\)/);
+                if (imageUrl && imageUrl[1]) {
+                    const img = new Image();
+                    img.onload = function () {
+                        console.log("✅ 背景圖片載入成功！");
+                        console.log("📸 圖片路徑：" + imageUrl[1]);
+                        console.log("📐 圖片尺寸：" + img.width + "x" + img.height);
+                    };
+                    img.onerror = function () {
+                        console.error("❌ 背景圖片載入失敗！");
+                        console.error("📂 請確認 background.png 是否與 index.html 在同一個資料夾");
+                        console.error("🔍 當前嘗試載入的路徑：" + imageUrl[1]);
+                        console.log("💡 提示：如果圖片在其他位置，請修改 HTML 中的 url('background.png')");
+                    };
+                    img.src = imageUrl[1];
+                }
+            } else {
+                console.warn("⚠️ 未設定背景圖片");
+            }
+        }
+
+        // 慶祝煙火效果（延長持續時間）
+        function startCelebrationFireworks() {
+            const container = document.getElementById("celebrationFireworks");
+            const colors = ["#ff99cc", "#ffaadd", "#ffd4e5", "#ffe0f0", "#ffc4dd", "#ffb3d9"];
+
+            // 持續生成小煙火（增加到 40 個）
+            let count = 0;
+            const interval = setInterval(() => {
+                if (count >= 40) {
+                    clearInterval(interval);
+                    return;
+                }
+
+                // 隨機位置
+                const x = 15 + Math.random() * 70;
+                const y = 15 + Math.random() * 40;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+
+                createMiniBurst(container, x, y, color);
+                count++;
+            }, 400);
+        }
+
+        function createMiniBurst(container, x, y, color) {
+            const particleCount = 8;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement("div");
+                particle.className = "mini-firework";
+                particle.style.left = `${x}%`;
+                particle.style.top = `${y}%`;
+                particle.style.background = color;
+                particle.style.boxShadow = `0 0 8px ${color}`;
+
+                const angle = (i / particleCount) * Math.PI * 2;
+                const distance = 30 + Math.random() * 30;
+                const tx = Math.cos(angle) * distance;
+                const ty = Math.sin(angle) * distance;
+
+                particle.style.setProperty('--tx', `${tx}px`);
+                particle.style.setProperty('--ty', `${ty}px`);
+
+                const delay = Math.random() * 0.3;
+                particle.style.animationDelay = `${delay}s`;
+
+                setTimeout(() => {
+                    particle.style.transform = `translate(${tx}px, ${ty}px) scale(0)`;
+                }, 10);
+
+                container.appendChild(particle);
+
+                setTimeout(() => particle.remove(), 2300);
+            }
+        }
+
+        // ==========================================
+        // 記憶系統
+        // ==========================================
+        const NAME_KEY = "pet_owner_name";
+        const BDAY_KEY = "pet_owner_birthday";
+        const HUNGER_KEY = "pet_hunger_level";
+        const LAST_FEED_KEY = "pet_last_feed_time";
+
+        document.getElementById("saveMemoryBtn").addEventListener("click", saveMemory);
+
+        function saveMemory() {
+            const name = document.getElementById("ownerName").value.trim();
+            const birthday = document.getElementById("ownerBirthday").value;
+
+            if (!name) {
+                alert("我想知道你的名字 ❤️");
+                return;
+            }
+
+            localStorage.setItem(NAME_KEY, name);
+            if (birthday) localStorage.setItem(BDAY_KEY, birthday);
+
+            document.querySelector(".pet-name").textContent = `${name} 的小夥伴`;
+            document.getElementById("petMessage").innerHTML =
+                `很高興認識你，${name}<br>我會記得今天`;
+
+            document.getElementById("memoryForm").style.display = "none";
+
+            // 🔓 解鎖所有互動功能
+            unlockPetInteractions();
+
+            // 顯示餵食系統
+            showFeedingSystem();
+
+            // 檢查生日按鈕
+            checkAndShowBirthdayButton();
+
+            // 初始化飢餓值
+            if (!localStorage.getItem(HUNGER_KEY)) {
+                localStorage.setItem(HUNGER_KEY, "0");
+                localStorage.setItem(LAST_FEED_KEY, Date.now());
+            }
+            updateHunger();
+        }
+
+        function loadMemoryIfExists() {
+            const name = localStorage.getItem(NAME_KEY);
+            if (!name) {
+                // 沒有記憶，保持鎖定狀態
+                return;
+            }
+
+            // 有記憶，載入資料
+            document.querySelector(".pet-name").textContent = `${name} 的小夥伴`;
+            document.getElementById("petMessage").innerHTML =
+                `我還在，${name}<br>今天也一起慢慢走吧`;
+
+            document.getElementById("memoryForm").style.display = "none";
+
+            // 🔓 解鎖所有互動功能
+            unlockPetInteractions();
+
+            // 顯示餵食系統
+            showFeedingSystem();
+
+            // 檢查生日
+            checkBirthday();
+
+            // 更新飢餓值
+            updateHunger();
+
+            // 🎂 檢查是否顯示生日按鈕
+            checkAndShowBirthdayButton();
+        }
+
+        function checkBirthday() {
+            const birthday = localStorage.getItem(BDAY_KEY);
+            if (!birthday) return;
+
+            const today = new Date().toISOString().slice(5, 10);
+            if (birthday.slice(5, 10) === today) {
+                document.getElementById("petMessage").innerHTML =
+                    "今天是你的日子<br>生日快樂 🎂";
+            }
+        }
+
+        // ==========================================
+        // 餵食系統
+        // ==========================================
+        function showFeedingSystem() {
+            const feedingSystem = document.getElementById("feedingSystem");
+            setTimeout(() => {
+                feedingSystem.classList.add("visible");
+            }, 500);
+        }
+
+        // 初始化餵食系統
+        document.getElementById("feedButton").addEventListener("click", feedPet);
+
+        function feedPet() {
+            const hungerLevel = getHungerLevel();
+
+            if (hungerLevel >= 5) {
+                showFeedMessage("我已經飽飽的了~ 💕");
+                return;
+            }
+
+            // 增加飽食度
+            const newHunger = hungerLevel + 1;
+            localStorage.setItem(HUNGER_KEY, newHunger);
+            localStorage.setItem(LAST_FEED_KEY, Date.now());
+
+            // 更新顯示
+            updateHungerDisplay(newHunger);
+
+            // 觸發動畫
+            triggerFeedingAnimation();
+
+            // 顯示訊息
+            const messages = [
+                "好好吃~ ❤",
+                "謝謝你~ 💕",
+                "真美味 ✨",
+                "好幸福 🌟",
+                "還想再吃 😋"
+            ];
+            const message = newHunger >= 5 ? "吃飽飽了~ 💖" : messages[Math.floor(Math.random() * messages.length)];
+            showFeedMessage(message);
+
+            // 更新寵物訊息
+            if (newHunger >= 5) {
+                const name = localStorage.getItem(NAME_KEY);
+                document.getElementById("petMessage").innerHTML =
+                    name ? `謝謝 ${name}<br>我吃得好開心 💕` : "我吃得好開心 💕";
+            }
+        }
+
+        function getHungerLevel() {
+            const lastFeedTime = parseInt(localStorage.getItem(LAST_FEED_KEY) || "0");
+            const hungerLevel = parseInt(localStorage.getItem(HUNGER_KEY) || "3");
+
+            if (lastFeedTime === 0) return hungerLevel;
+
+            // 每 2 小時降低 1 點飽食度
+            const now = Date.now();
+            const hoursPassed = (now - lastFeedTime) / (1000 * 60 * 60);
+            const hungerDecrease = Math.floor(hoursPassed / 2);
+
+            const newHunger = Math.max(0, hungerLevel - hungerDecrease);
+
+            if (hungerDecrease > 0) {
+                localStorage.setItem(HUNGER_KEY, newHunger);
+                localStorage.setItem(LAST_FEED_KEY, now);
+            }
+
+            return newHunger;
+        }
+
+        function updateHunger() {
+            const hungerLevel = getHungerLevel();
+            updateHungerDisplay(hungerLevel);
+        }
+
+        function updateHungerDisplay(level) {
+            const hearts = document.querySelectorAll(".hunger-heart");
+            hearts.forEach((heart, index) => {
+                if (index < level) {
+                    heart.classList.add("full");
+                    heart.classList.remove("empty");
+                } else {
+                    heart.classList.remove("full");
+                    heart.classList.add("empty");
+                }
+            });
+        }
+
+        function triggerFeedingAnimation() {
+            const pet = document.getElementById("petSvg");
+            const button = document.getElementById("feedButton");
+
+            // 寵物吃東西動畫
+            pet.classList.add("eating");
+            setTimeout(() => {
+                pet.classList.remove("eating");
+            }, 600);
+
+            // 按鈕動畫
+            button.classList.add("feeding");
+            setTimeout(() => {
+                button.classList.remove("feeding");
+            }, 500);
+
+            // 產生愛心特效
+            createHearts();
+        }
+
+        function createHearts() {
+            const container = document.getElementById("heartsContainer");
+            const petContainer = document.querySelector(".pet-container");
+            const rect = petContainer.getBoundingClientRect();
+
+            // 產生 5-8 個愛心
+            const heartCount = 5 + Math.floor(Math.random() * 4);
+
+            for (let i = 0; i < heartCount; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement("div");
+                    heart.className = "floating-heart";
+                    heart.textContent = "❤";
+
+                    // 從寵物周圍隨機位置產生
+                    const angle = Math.random() * Math.PI * 2;
+                    const distance = 30 + Math.random() * 40;
+                    const x = rect.left + rect.width / 2 + Math.cos(angle) * distance;
+                    const y = rect.top + rect.height / 2 + Math.sin(angle) * distance;
+
+                    heart.style.left = `${x}px`;
+                    heart.style.top = `${y}px`;
+
+                    container.appendChild(heart);
+
+                    setTimeout(() => heart.remove(), 2000);
+                }, i * 100);
+            }
+        }
+
+        function showFeedMessage(message) {
+            const messageEl = document.getElementById("feedMessage");
+            messageEl.textContent = message;
+            messageEl.classList.add("show");
+
+            setTimeout(() => {
+                messageEl.classList.remove("show");
+            }, 2000);
+        }
+
+        // ==========================================
+        // 寵物互動
+        // ==========================================
+        const petLines = [
+            "很高興認識你我的主人~",
+            "今年請多多指教啦",
+            "去年的你辛苦啦",
+            "今年我們一起做一些精彩的事",
+            "我可以陪你哭陪你笑",
+            "陪你一起 度過2026的喜怒哀樂💕",
+            "有你真好 ✨",
+            "希望在未來的每一天 都能看到你的笑容 😊",
+            "我會是你的後盾的!",
+            "讓我們一起迎接更多的冒險吧！",
+            "謝謝你選擇了我作為你的夥伴！",
+            "無論發生什麼事，我都會在你身邊支持你！",
+            "讓我們一起創造美好的回憶吧！",
+            "期待和你一起探索這個世界的每一個角落！",
+            "每一天都有新的驚喜，讓我們一起迎接它們吧！",
+            "謝謝你給了我一個溫暖的家！",
+            "我會努力成為你最好的朋友！",
+            "讓我們一起迎接更多的冒險吧！",
+            "期待和你一起探索這個世界的每一個角落！"
+        ];
+
+        document.querySelector(".pet").addEventListener("click", () => {
+            const pet = document.querySelector(".pet");
+            pet.classList.remove("touched");
+            void pet.offsetWidth; // 重置動畫
+            pet.classList.add("touched");
+
+            const name = localStorage.getItem(NAME_KEY);
+            const line = petLines[Math.floor(Math.random() * petLines.length)];
+
+            document.getElementById("petMessage").innerHTML =
+                name ? `${line}<br>${name}` : line;
+
+            // 產生愛心特效
+            createHearts();
+        });
+
+        // ==========================================
+        // 生日特殊按鈕系統
+        // ==========================================
+
+        // 檢查並顯示生日按鈕
+        function checkAndShowBirthdayButton() {
+            const birthday = localStorage.getItem(BDAY_KEY);
+            if (!birthday) return;
+
+            const today = new Date().toISOString().slice(5, 10);
+            const userBirthday = birthday.slice(5, 10);
+
+            if (today === userBirthday) {
+                const btn = document.getElementById("birthdaySpecialBtn");
+                btn.classList.add("show");
+            }
+        }
+
+        // 生日按鈕點擊事件
+        document.getElementById("birthdaySpecialBtn").addEventListener("click", function () {
+            openBirthdayCakeScene();
+        });
+
+        // 開啟生日蛋糕場景
+        function openBirthdayCakeScene() {
+            // 記住當前場景
+            const currentScene = document.querySelector(".scene.active");
+            if (currentScene) {
+                currentScene.dataset.previousScene = "true";
+            }
+
+            // 切換到生日場景
+            const allScenes = document.querySelectorAll(".scene");
+            allScenes.forEach(s => s.classList.remove("active"));
+
+            const birthdayScene = document.getElementById("scene-birthday");
+            birthdayScene.classList.add("active");
+
+            // 設定生日訊息
+            const name = localStorage.getItem(NAME_KEY);
+            if (name) {
+                document.getElementById("birthdayName").textContent = `${name}，生日快樂！`;
+            }
+
+            // 重置蛋糕狀態
+            resetCakeState();
+        }
+
+        // 重置蛋糕狀態
+        function resetCakeState() {
+            const flame = document.getElementById("cakeFlame");
+            const smoke = document.getElementById("cakeSmoke");
+            const blowBtn = document.getElementById("blowCandleBtn");
+            const closeBtn = document.getElementById("closeBirthdayBtn");
+
+            flame.classList.remove("blown-out");
+            smoke.classList.remove("rising");
+            blowBtn.style.display = "block";
+            closeBtn.style.display = "none";
+
+            // 清除紙屑
+            document.getElementById("confettiContainer").innerHTML = "";
+        }
+
+        // 吹蠟燭
+        document.getElementById("blowCandleBtn").addEventListener("click", function () {
+            const flame = document.getElementById("cakeFlame");
+            const smoke = document.getElementById("cakeSmoke");
+            const btn = this;
+
+            // 吹滅火焰
+            flame.classList.add("blown-out");
+
+            // 顯示煙霧
+            setTimeout(() => {
+                smoke.classList.add("rising");
+            }, 400);
+
+            // 五彩紙屑
+            setTimeout(() => {
+                createConfetti();
+            }, 800);
+
+            // 隱藏吹蠟燭按鈕，顯示關閉按鈕
+            setTimeout(() => {
+                btn.style.display = "none";
+                document.getElementById("closeBirthdayBtn").style.display = "block";
+            }, 1500);
+        });
+
+        // 關閉生日場景
+        document.getElementById("closeBirthdayBtn").addEventListener("click", function () {
+            const birthdayScene = document.getElementById("scene-birthday");
+            birthdayScene.classList.remove("active");
+
+            // 回到之前的場景
+            const previousScene = document.querySelector(".scene[data-previous-scene='true']");
+            if (previousScene) {
+                previousScene.classList.add("active");
+                delete previousScene.dataset.previousScene;
+            } else {
+                // 如果沒有記錄，回到寵物首頁
+                document.getElementById("scene-pet-home").classList.add("active");
+            }
+        });
+
+        // 創建五彩紙屑
+        function createConfetti() {
+            const container = document.getElementById("confettiContainer");
+            const colors = ["#ff6bcf", "#ffd93d", "#6bcf7f", "#4ecdc4", "#a78bfa", "#66d9ff"];
+            const count = 50;
+
+            for (let i = 0; i < count; i++) {
+                const confetti = document.createElement("div");
+                confetti.className = "confetti";
+
+                const x = Math.random() * 100;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const delay = Math.random() * 0.5;
+                const duration = 2 + Math.random() * 1;
+
+                confetti.style.left = `${x}%`;
+                confetti.style.background = color;
+                confetti.style.animationDelay = `${delay}s`;
+                confetti.style.animationDuration = `${duration}s`;
+
+                container.appendChild(confetti);
+
+                setTimeout(() => {
+                    confetti.classList.add("falling");
+                }, 10);
+
+                setTimeout(() => {
+                    confetti.remove();
+                }, (delay + duration) * 1000 + 100);
+            }
+        }
+
+        // 控制彈窗開關
+        function togglePetModal(show) {
+            const modal = document.getElementById('petModal');
+            if (show) {
+                modal.classList.add('show');
+            } else {
+                modal.classList.remove('show');
+            }
+        }
+
+        // ==========================================
+        // 啟動！
+        // ==========================================
+        window.addEventListener("load", () => {
+            // 初始化跳過按鈕
+            initSkipButton();
+
+            setTimeout(startExperience, 500);
+        });
+        function showPetHome() {
+            // 隱藏跳過按鈕（動畫已完成）
+            hideSkipButton();
+
+            // 切換場景
+            document.getElementById("scene-hatching").classList.remove("active");
+            const homeScene = document.getElementById("scene-pet-home");
+            homeScene.classList.add("active");
+
+            // ... 其他程式碼保持不變 ...
+        }
+    </script>
+</body>
+
+</html>
